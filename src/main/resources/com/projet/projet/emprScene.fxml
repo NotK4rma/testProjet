@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="714.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="714.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projet.projet.controllers.emprController">
    <children>
       <AnchorPane fx:id="background" layoutY="80.0" prefHeight="634.0" prefWidth="1250.0">
          <children>
@@ -93,7 +93,9 @@
             </HBox>
             <Pane layoutX="44.0" layoutY="23.0" prefHeight="35.0" prefWidth="347.0">
                <children>
-                  <TextField prefHeight="35.0" prefWidth="347.0" promptText="Rechercher bibliothécaire par Username" />
+                  <TextField fx:id="tf_cin" prefHeight="35.0" prefWidth="347.0" promptText="Chercher emprunt par CIN" />
+                  <TextField fx:id="tf_date" prefHeight="35.0" prefWidth="347.0" promptText="Chercher emprunt par Date d'emprunt" />
+                  <TextField fx:id="tf_isbn" prefHeight="35.0" prefWidth="347.0" promptText="Chercher emprunt par ISBN" />
                   <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="305.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@Images/search.png" />
@@ -103,7 +105,7 @@
             </Pane>
          </children>
       </AnchorPane>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#686868cc" height="634.0" layoutY="80.0" stroke="BLACK" strokeType="INSIDE" width="1250.0">
+      <Rectangle fx:id="hide" arcHeight="5.0" arcWidth="5.0" fill="#686868cc" height="634.0" layoutY="80.0" stroke="BLACK" strokeType="INSIDE" width="1250.0">
          <effect>
             <DropShadow />
          </effect>
@@ -156,11 +158,11 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="b_emprunt" alignment="TOP_LEFT" layoutY="52.0" maxWidth="1000.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="285.0" text="Emprunts">
+                  <Button fx:id="b_lib2" alignment="TOP_LEFT" layoutY="52.0" maxWidth="1000.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="285.0" text="Bibliothécaires">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@Images/transaction-line-icon-png_234015-removebg-preview.png" />
+                              <Image url="@Images/libarrianIcon-removebg-preview.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -246,7 +248,7 @@
                   </ImageView>
                   <HBox alignment="TOP_RIGHT" prefHeight="20.0" prefWidth="100.0" spacing="10.0">
                      <children>
-                        <ImageView fitHeight="17.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="b_retour" fitHeight="17.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@Images/return.png" />
                            </image>
@@ -257,7 +259,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </ImageView>
-                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="b_close" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@Images/close-button.png" />
                            </image>

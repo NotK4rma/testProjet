@@ -27,7 +27,7 @@ public class adhController implements Initializable {
     private Button b_emprunt;
 
     @FXML
-    private Button b_lib;
+    private Button b_lib2;
 
     @FXML
     private Button b_livre;
@@ -67,7 +67,7 @@ public class adhController implements Initializable {
     @FXML
     private Rectangle hide;
 
-    SceneMethods editor = new SceneMethods();
+    private SceneMethods editor = new SceneMethods();
 
 
 
@@ -100,7 +100,7 @@ public class adhController implements Initializable {
         String css= "../Styles/RegularStyles.css";
 
 
-        b_lib.setOnMouseClicked(e-> {
+        b_lib2.setOnMouseClicked(e-> {
             try {
                 editor.switchScene((Stage)b_close.getScene().getWindow(),"../librScene.fxml",css);
             } catch (IOException ex) {

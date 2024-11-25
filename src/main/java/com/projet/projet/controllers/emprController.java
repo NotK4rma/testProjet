@@ -1,10 +1,10 @@
 package com.projet.projet.controllers;
 
 import com.projet.projet.utilsScene.SceneMethods;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -15,8 +15,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class libController implements Initializable {
-
+public class emprController implements Initializable {
     @FXML
     private Button b_adh;
 
@@ -27,7 +26,7 @@ public class libController implements Initializable {
     private ImageView b_close;
 
     @FXML
-    private Button b_emprunt;
+    private Button b_lib2;
 
     @FXML
     private Button b_livre;
@@ -48,7 +47,16 @@ public class libController implements Initializable {
     private AnchorPane background;
 
     @FXML
+    private ChoiceBox<String> choiceRecherche;
+
+    @FXML
+    private CheckBox emprcourrant;
+
+    @FXML
     private Rectangle hide;
+
+    @FXML
+    private Label l_recherche;
 
     @FXML
     private Label menuClose;
@@ -67,14 +75,21 @@ public class libController implements Initializable {
 
     @FXML
     private Label titreScene;
+    @FXML
+    TextField tf_isbn;
+    @FXML
+    TextField tf_cin;
+    @FXML
+    TextField tf_date;
 
     private SceneMethods editor = new SceneMethods();
-
+    private String[] options = {"ISBN du livre", "DATE d'emprunt", "CIN d'adhérent"};
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-
+        choiceRecherche.getItems().addAll(options);
+        choiceRecherche.setOnAction(this::findSearchBar);
 
         menuOpen.setOnMouseClicked(e->editor.translationOpen(slider,hide,menuOpen,menuClose));
         menuClose.setOnMouseClicked(e->editor.translationClose(slider,hide,menuOpen,menuClose));
@@ -105,13 +120,17 @@ public class libController implements Initializable {
             }
         });
 
-        b_emprunt.setOnMouseClicked(e-> {
+
+        b_lib2.setOnMouseClicked(e-> {
             try {
-                editor.switchScene((Stage)b_close.getScene().getWindow(),"../emprScene.fxml",css);
+                editor.switchScene((Stage)b_close.getScene().getWindow(),"../librScene.fxml",css);
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
         });
+
+
+
 
         b_livre.setOnMouseClicked(e-> {
             try {
@@ -125,5 +144,32 @@ public class libController implements Initializable {
 
 
 
+
+
     }
+    private void findSearchBar(ActionEvent event){
+        l_recherche.setVisible(false);
+        switch (choiceRecherche.getValue()){
+            case "CIN d'adhérent":
+                tf_isbn.setVisible(false);
+                tf_date.setVisible(false);
+                tf_cin.setVisible(true);
+                break;
+            case "DATE d'emprunt":
+                tf_isbn.setVisible(false);
+                tf_cin.setVisible(false);
+                tf_date.setVisible(true);
+                break;
+            case "ISBN du livre":
+                tf_cin.setVisible(false);
+                tf_date.setVisible(false);
+                tf_isbn.setVisible(true);
+            default:
+                break;
+
+        }
+
+    }
+
+
 }

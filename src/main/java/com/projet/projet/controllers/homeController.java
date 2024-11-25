@@ -66,7 +66,7 @@ public class homeController implements Initializable {
     @FXML
     private AnchorPane slider;
 
-    SceneMethods editor = new SceneMethods();
+    private SceneMethods editor = new SceneMethods();
 
 
 

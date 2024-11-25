@@ -38,7 +38,7 @@ public class loginController implements Initializable {
     @FXML
     private TextField username;
 
-    SceneMethods editor = new SceneMethods();
+    private SceneMethods editor = new SceneMethods();
 
 
 
@@ -51,6 +51,14 @@ public class loginController implements Initializable {
         hyper.setOnMouseClicked(e-> {
             try {
                 editor.switchScene((Stage)b_close.getScene().getWindow(),"../signupScene.fxml", "../Styles/signInUpStyles.css");
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+
+        b_login.setOnMouseClicked(e-> {
+            try {
+                editor.switchScene((Stage)b_close.getScene().getWindow(),"../homeScene.fxml","../Styles/RegularStyles.css");
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }

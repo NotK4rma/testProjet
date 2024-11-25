@@ -39,7 +39,7 @@ public class signupController implements Initializable {
     @FXML
     private TextField username;
 
-    SceneMethods editor = new SceneMethods();
+    private SceneMethods editor = new SceneMethods();
 
 
     @Override

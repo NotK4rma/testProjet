@@ -1,5 +1,5 @@
 
-#b_adh,#b_livre,#b_emprunt,#b_lib{
+#b_adh,#b_livre,#b_emprunt,#b_lib,#b_lib2{
     -fx-background-color :  #485b6e;
     -fx-border-color : white transparent white transparent ;
     -fx-border-size : 1px;
@@ -31,7 +31,7 @@
 
 }
 
-#b_adh:hover,#b_livre:hover,#b_emprunt:hover{
+#b_adh:hover,#b_livre:hover,#b_emprunt:hover,#b_lib2:hover{
     -fx-background-color :  #136f90;
     -fx-border-color : #485b6e transparent #485b6e transparent;
     -fx-border-width : 2px;
