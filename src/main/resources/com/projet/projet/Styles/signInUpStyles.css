@@ -1,0 +1,54 @@
+.label{
+    -fx-font-family: Franklin Gothic Demi;
+    -fx-font-weight : 700;
+    -fx-font-size : 30px;
+    -fx-text-fill :  #1786b4;
+
+
+}
+
+.root{
+    -fx-background-image: url("../Images/background.png");
+    -fx-background-size : cover;
+}
+
+#title{
+        -fx-font-family: Franklin Gothic Demi;
+        -fx-font-weight : 900;
+        -fx-font-size : 50px;
+
+}
+
+#nouv, #hyper{
+            -fx-font-family: Roboto;
+            -fx-font-weight : 400;
+            -fx-font-size : 20px;
+            -fx-text-fill: black;
+}
+
+.button{
+    -fx-border-radius: 15px;
+    -fx-border-type: solid;
+    -fx-border-color: black;
+    -fx-font-family: Franklin Gothic Demi;
+    -fx-font-weight : 700;
+    -fx-font-size : 20px;
+    -fx-background-radius : 15px;
+    -fx-background-color : #1786b4;
+
+
+}
+
+.button:hover{
+    -fx-background-color : white;
+    -fx-text-fill:  #1786b4;
+
+
+}
+
+#container{
+    -fx-border-type: solid;
+    -fx-border-color: black;
+    -fx-border-width: 3px;
+
+}
