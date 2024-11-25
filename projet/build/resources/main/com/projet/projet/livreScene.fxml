@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="714.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane fx:id="background" layoutY="80.0" prefHeight="634.0" prefWidth="1250.0">
+         <children>
+            <TableView prefHeight="554.0" prefWidth="1250.0">
+               <columns>
+                  <TableColumn prefWidth="75.0" text="Titre" />
+                  <TableColumn prefWidth="75.0" text="ISBN" />
+                  <TableColumn prefWidth="75.0" text="Auteur" />
+                  <TableColumn prefWidth="75.0" text="Prix" />
+                  <TableColumn prefWidth="75.0" text="Satus : Best Seller ?" />
+                  <TableColumn prefWidth="75.0" text="Nombre d'exemplaire disponible" />
+               </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutY="634.0" prefHeight="80.0" prefWidth="1250.0" style="-fx-background-color: #485b6e;">
+         <children>
+            <HBox alignment="CENTER" layoutX="382.0" prefHeight="80.0" prefWidth="860.0" spacing="73.0">
+               <children>
+                  <Button fx:id="b_ajout" mnemonicParsing="false" prefWidth="180.0" text="Ajouter ouvrage">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Images/plus.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="b_remove" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefWidth="180.0" text="Supprimer ouvrage">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Images/minus.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="b_tous" layoutX="152.0" layoutY="10.0" mnemonicParsing="false" prefWidth="210.0" text="Afficher tous les ouvrages">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Images/show.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+               <padding>
+                  <Insets left="73.0" right="73.0" />
+               </padding>
+            </HBox>
+            <Pane layoutX="44.0" layoutY="23.0" prefHeight="35.0" prefWidth="347.0">
+               <children>
+                  <TextField prefHeight="35.0" prefWidth="347.0" promptText="Rechercher ouvrages par ISBN" />
+                  <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="305.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Images/search.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+         </children>
+      </AnchorPane>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#97999acc" height="634.0" layoutY="80.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="1250.0">
+         <effect>
+            <DropShadow />
+         </effect>
+      </Rectangle>
+      <AnchorPane fx:id="slider" prefHeight="200.0" prefWidth="280.0" style="-fx-background-color: #1786b4;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="80.0">
+         <children>
+            <Pane layoutX="27.0" layoutY="23.0" prefHeight="216.0" prefWidth="226.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="216.0" prefWidth="234.0" spacing="20.0">
+                     <children>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Images/3749904.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="PlaceHolder:Nom libr" />
+                     </children>
+                  </VBox>
+               </children>
+            </Pane>
+            <VBox alignment="TOP_RIGHT" layoutY="269.0" prefHeight="367.0" prefWidth="280.0" spacing="50.0">
+               <children>
+                  <Button fx:id="b_adh" alignment="TOP_LEFT" maxWidth="1000.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="285.0" text=" Adhérents">
+                     <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Images/images-removebg-preview.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets left="10.0" top="10.0" />
+                     </padding>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="b_livre" alignment="TOP_LEFT" layoutY="10.0" maxWidth="1000.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="285.0" text=" Ouvrages">
+                     <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Images/book%20(1).png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets left="10.0" top="10.0" />
+                     </padding>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="b_emprunt" alignment="TOP_LEFT" layoutY="52.0" maxWidth="1000.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="285.0" text="Emprunts">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Images/transaction-line-icon-png_234015-removebg-preview.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets left="7.0" top="7.0" />
+                     </padding>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="menubarup" prefHeight="80.0" prefWidth="1250.0" style="-fx-background-color: #1786b4;">
+         <children>
+            <Pane fx:id="menubardown" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #485b6e;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0">
+               <children>
+                  <Label fx:id="menuOpen" layoutX="30.0" layoutY="10.0" prefHeight="42.0" prefWidth="150.0" text="Menu">
+                     <graphic>
+                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Images/Hamburger_icon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Label>
+                  <Label fx:id="menuClose" layoutX="30.0" layoutY="10.0" prefHeight="42.0" prefWidth="150.0" text="Menu">
+                     <graphic>
+                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Images/Hamburger_icon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Label>
+                  <Button fx:id="b_logout" layoutX="1144.0" layoutY="3.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="72.0">
+                     <graphic>
+                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Images/logout1.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Label fx:id="titreScene" alignment="CENTER" layoutX="412.0" layoutY="8.0" prefHeight="30.0" prefWidth="427.0" text="Ouvrage" />
+               </children>
+            </Pane>
+            <HBox prefHeight="20.0" prefWidth="1250.0" spacing="1100.0">
+               <children>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Images/logo.png" />
+                     </image>
+                  </ImageView>
+                  <HBox alignment="TOP_RIGHT" prefHeight="20.0" prefWidth="100.0" spacing="10.0">
+                     <children>
+                        <ImageView fitHeight="17.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Images/return.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets top="1.0" />
+                           </HBox.margin>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Images/close-button.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </HBox>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
