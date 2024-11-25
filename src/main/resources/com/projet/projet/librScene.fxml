@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="714.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="714.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projet.projet.controller.libController">
    <children>
       <AnchorPane fx:id="background" layoutY="80.0" prefHeight="634.0" prefWidth="1250.0">
          <children>
@@ -87,7 +87,7 @@
             </Pane>
          </children>
       </AnchorPane>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#686868cc" height="634.0" layoutY="80.0" stroke="BLACK" strokeType="INSIDE" width="1250.0">
+      <Rectangle fx:id="hide" arcHeight="5.0" arcWidth="5.0" fill="#686868cc" height="634.0" layoutY="80.0" stroke="BLACK" strokeType="INSIDE" width="1250.0">
          <effect>
             <DropShadow />
          </effect>
@@ -211,7 +211,7 @@
                   </ImageView>
                   <HBox alignment="TOP_RIGHT" prefHeight="20.0" prefWidth="100.0" spacing="10.0">
                      <children>
-                        <ImageView fitHeight="17.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="b_retour" fitHeight="17.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@Images/return.png" />
                            </image>
@@ -222,7 +222,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </ImageView>
-                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="b_close" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@Images/close-button.png" />
                            </image>

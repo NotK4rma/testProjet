@@ -200,10 +200,17 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="b_lib" layoutX="818.0" layoutY="10.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="182.0" text="Bibliothécaires">
+                  <Button fx:id="b_lib" layoutX="818.0" layoutY="10.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="182.0" text=" Bibliothécaires">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
+                     <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Images/libarrianIcon-removebg-preview.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </Button>
                </children>
             </Pane>
