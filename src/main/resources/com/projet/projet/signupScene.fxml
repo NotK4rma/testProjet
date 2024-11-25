@@ -14,7 +14,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="714.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="714.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projet.projet.controllers.signupController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f7f7f7c0" height="517.0" layoutX="293.0" layoutY="125.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="10.0" width="664.0">
          <effect>
@@ -47,7 +47,7 @@
                               </ImageView>
                            </graphic>
                         </Label>
-                        <TextField maxHeight="30.0" minHeight="30.0" prefHeight="30.0" prefWidth="500.0" promptText="Entrer votre username" />
+                        <TextField fx:id="username" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" prefWidth="500.0" promptText="Entrer votre username" />
                      </children>
                      <padding>
                         <Insets left="50.0" right="50.0" />
@@ -67,7 +67,7 @@
                               </ImageView>
                            </graphic>
                         </Label>
-                        <PasswordField maxHeight="30.0" minHeight="30.0" prefHeight="30.0" prefWidth="500.0" promptText="Entrer votre mot de passe" />
+                        <PasswordField fx:id="mdp" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" prefWidth="500.0" promptText="Entrer votre mot de passe" />
                      </children>
                      <padding>
                         <Insets left="50.0" right="50.0" />
@@ -87,7 +87,7 @@
                               </ImageView>
                            </graphic>
                         </Label>
-                        <PasswordField maxHeight="30.0" minHeight="30.0" prefHeight="30.0" prefWidth="500.0" promptText="Confirmer votre mot de passe" />
+                        <PasswordField fx:id="conf_mdp" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" prefWidth="500.0" promptText="Confirmer votre mot de passe" />
                      </children>
                      <padding>
                         <Insets left="50.0" right="50.0" />
@@ -95,7 +95,7 @@
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="83.0" prefWidth="600.0" spacing="7.0">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="188.0" text="Sign Up">
+                        <Button fx:id="b_signup" mnemonicParsing="false" prefHeight="38.0" prefWidth="188.0" text="Sign Up">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -104,10 +104,13 @@
                   </VBox>
                </children>
             </VBox>
-            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="610.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="b_close" fitHeight="30.0" fitWidth="30.0" layoutX="610.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Images/close-button.png" />
                </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </ImageView>
          </children>
       </AnchorPane>
