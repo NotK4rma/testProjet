@@ -13,10 +13,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="714.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="714.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projet.projet.controllers.homeController">
    <children>
-      <AnchorPane fx:id="background" layoutY="80.0" prefHeight="634.0" prefWidth="1250.0" translateX="280.0">
+      <AnchorPane fx:id="bg_slide" layoutY="80.0" prefHeight="634.0" prefWidth="1250.0" translateX="280.0">
          <children>
             <VBox prefHeight="634.0" prefWidth="1250.0" spacing="30.0">
                <children>
@@ -41,7 +40,7 @@
                               </Label>
                            </children>
                         </Pane>
-                        <Pane layoutX="10.0" layoutY="10.0" prefHeight="265.0" prefWidth="363.0" style="-fx-background-color: #1786b4;">
+                        <Pane fx:id="adhinfo" layoutX="10.0" layoutY="10.0" prefHeight="265.0" prefWidth="363.0" style="-fx-background-color: #1786b4;">
                            <children>
                               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff80" height="267.0" layoutX="274.0" stroke="BLACK" strokeType="INSIDE" width="90.0">
                                  <effect>
@@ -53,7 +52,7 @@
                                     <Image url="@Images/reader.png" />
                                  </image>
                               </ImageView>
-                              <Label fx:id="adhinfo" layoutY="64.0" prefHeight="80.0" prefWidth="273.0" text="Info Sur adhérent from db">
+                              <Label layoutY="64.0" prefHeight="80.0" prefWidth="273.0" text="Info Sur adhérent from db">
                                  <padding>
                                     <Insets left="20.0" />
                                  </padding>
@@ -65,7 +64,7 @@
                         <Insets left="175.0" right="175.0" />
                      </padding>
                   </HBox>
-                  <Pane prefHeight="265.0" prefWidth="363.0" style="-fx-background-color: #1786b4;">
+                  <Pane fx:id="librarianinfo" prefHeight="265.0" prefWidth="363.0" style="-fx-background-color: #1786b4;">
                      <children>
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff80" height="267.0" layoutX="274.0" stroke="BLACK" strokeType="INSIDE" width="90.0">
                            <effect>
@@ -77,7 +76,7 @@
                               <Image url="@Images/librarian%20logo.png" />
                            </image>
                         </ImageView>
-                        <Label fx:id="librarianinfo" layoutY="64.0" prefHeight="80.0" prefWidth="273.0" text="Info Sur ouvrage from db">
+                        <Label layoutY="64.0" prefHeight="80.0" prefWidth="273.0" text="Info Sur ouvrage from db">
                            <padding>
                               <Insets left="20.0" />
                            </padding>
@@ -215,7 +214,7 @@
                         <Image url="@Images/logo.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="b_close" fitHeight="20.0" fitWidth="20.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@Images/close-button.png" />
                      </image>

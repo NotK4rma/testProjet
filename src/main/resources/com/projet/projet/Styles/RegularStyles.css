@@ -82,6 +82,7 @@
 #menuOpen , #menuClose{
         -fx-font-family: Open Sans;
         -fx-font-weight : 600;
+
         -fx-font-size : 17px;
 
 }
@@ -137,5 +138,13 @@
             -fx-font-weight : 400;
             -fx-font-size : 12px;
             -fx-text-fill :  #00000070;
+
+}
+
+#adhinfo, #librarianinfo, #bookinfo{
+    -fx-background-color:  #1786b4;
+    -fx-background-radius:  10px;
+    -fx-border-radius:  10px;
+
 
 }
