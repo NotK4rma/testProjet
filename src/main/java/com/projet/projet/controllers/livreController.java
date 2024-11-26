@@ -88,6 +88,9 @@ public class livreController implements Initializable {
     @FXML
     private Label l_recherche;
 
+    private String css= "../Styles/RegularStyles.css";
+    private String css2= "../Styles/newWindowStyles.css";
+
     private SceneMethods editor = new SceneMethods();
 
     private String[] options = {"Livre", "Dictionnaire", "Magazine", "Bande déssinée"};
@@ -122,7 +125,7 @@ public class livreController implements Initializable {
             }
 
         });
-        String css= "../Styles/RegularStyles.css";
+
         b_adh.setOnMouseClicked(e-> {
             try {
                 editor.switchScene((Stage)b_close.getScene().getWindow(),"../adhScene.fxml", css);
@@ -145,6 +148,23 @@ public class livreController implements Initializable {
         b_lib2.setOnMouseClicked(e-> {
             try {
                 editor.switchScene((Stage)b_close.getScene().getWindow(),"../librScene.fxml",css);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+
+
+        b_ajout.setOnMouseClicked(e-> {
+            try {
+                editor.switchMiniStage("../ajoutLivScene.fxml",css2);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+
+        b_remove.setOnMouseClicked(e-> {
+            try {
+                editor.switchMiniStage("../supprimerOuvScene.fxml",css2);
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }

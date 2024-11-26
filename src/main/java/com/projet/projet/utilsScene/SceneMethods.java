@@ -75,11 +75,14 @@ public class SceneMethods {
         slide.setOnFinished(e->{
             open.setVisible(true);
             close.setVisible(false);
+            rect.setVisible(false);
         });
 
     }
 
     public void translationOpen(AnchorPane p, Rectangle rect, Label open, Label close){
+        rect.setVisible(true);
+
         TranslateTransition slide = new TranslateTransition();
         FadeTransition fadeIn = new FadeTransition();
         fadeIn.setDuration(Duration.millis(300));
@@ -98,6 +101,17 @@ public class SceneMethods {
             open.setVisible(false);
             close.setVisible(true);
         });
+
+    }
+
+
+    public void switchMiniStage(String url, String css) throws IOException {
+        FXMLLoader root = new FXMLLoader(getClass().getResource(url));
+        Scene scene = new Scene(root.load());
+        scene.getStylesheets().add(getClass().getResource(css).toExternalForm());
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.show();
 
     }
 

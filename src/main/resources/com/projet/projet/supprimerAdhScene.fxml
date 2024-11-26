@@ -13,7 +13,7 @@
          <children>
             <VBox prefHeight="63.0" prefWidth="479.0" spacing="5.0" translateY="-30.0">
                <children>
-                  <Label prefHeight="17.0" prefWidth="118.0" text="CIN adhérent :">
+                  <Label prefHeight="17.0" prefWidth="206.0" text="CIN adhérent :">
                      <padding>
                         <Insets left="10.0" />
                      </padding></Label>

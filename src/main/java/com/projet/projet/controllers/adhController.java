@@ -68,6 +68,8 @@ public class adhController implements Initializable {
     private Rectangle hide;
 
     private SceneMethods editor = new SceneMethods();
+    private String css= "../Styles/RegularStyles.css";
+    private String css2= "../Styles/newWindowStyles.css";
 
 
 
@@ -97,7 +99,6 @@ public class adhController implements Initializable {
 
 
         });
-        String css= "../Styles/RegularStyles.css";
 
 
         b_lib2.setOnMouseClicked(e-> {
@@ -127,7 +128,21 @@ public class adhController implements Initializable {
         });
 
 
+        b_ajout.setOnMouseClicked(e-> {
+            try {
+                editor.switchMiniStage("../ajoutAdhScene.fxml",css2);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
 
+        b_remove.setOnMouseClicked(e-> {
+            try {
+                editor.switchMiniStage("../supprimerAdhScene.fxml",css2);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
 
 
 

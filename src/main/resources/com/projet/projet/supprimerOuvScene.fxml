@@ -13,7 +13,7 @@
          <children>
             <VBox prefHeight="63.0" prefWidth="479.0" spacing="5.0" translateY="-30.0">
                <children>
-                  <Label prefHeight="17.0" prefWidth="121.0" text="ISBN ouvrage :">
+                  <Label prefHeight="17.0" prefWidth="220.0" text="ISBN ouvrage :">
                      <VBox.margin>
                         <Insets left="10.0" />
                      </VBox.margin></Label>

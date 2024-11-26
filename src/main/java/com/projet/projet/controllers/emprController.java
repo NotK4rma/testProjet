@@ -84,6 +84,7 @@ public class emprController implements Initializable {
 
     private SceneMethods editor = new SceneMethods();
     private String[] options = {"ISBN du livre", "DATE d'emprunt", "CIN d'adhérent"};
+    private String css2= "../Styles/newWindowStyles.css";
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -139,6 +140,9 @@ public class emprController implements Initializable {
                 throw new RuntimeException(ex);
             }
         });
+
+
+
 
 
 
