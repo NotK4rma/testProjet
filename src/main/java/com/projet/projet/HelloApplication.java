@@ -3,6 +3,7 @@ package com.projet.projet;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -17,6 +18,7 @@ public class HelloApplication extends Application {
         stage.setResizable(false);
         scene.getStylesheets().add(getClass().getResource("Styles/signInUpStyles.css").toExternalForm());
         stage.initStyle(StageStyle.UNDECORATED);
+        //stage.getIcons().add(new Image("../Images/logo.png"));
         stage.setScene(scene);
         stage.show();
     }

@@ -1,10 +1,13 @@
 package com.projet.projet.controllers;
 
 import com.projet.projet.utilsScene.SceneMethods;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableView;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -65,9 +68,29 @@ public class livreController implements Initializable {
     private Label titreScene;
     @FXML
     private Rectangle hide;
+    @FXML
+    private ChoiceBox<String>  choiceRecherche;
+
+    @FXML
+    private TableView<?> tablebandedess;
+
+    @FXML
+    private TableView<?> tablediction;
+
+    @FXML
+    private TableView<?> tablelivre;
+
+    @FXML
+    private TableView<?> tablemagazine;
+
+    @FXML
+    private TableView<?> tableouv;
+    @FXML
+    private Label l_recherche;
 
     private SceneMethods editor = new SceneMethods();
 
+    private String[] options = {"Livre", "Dictionnaire", "Magazine", "Bande déssinée"};
 
 
 
@@ -75,6 +98,9 @@ public class livreController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        choiceRecherche.getItems().addAll(options);
+        choiceRecherche.setOnAction(this::findSearchBar);
 
         menuOpen.setOnMouseClicked(e->editor.translationOpen(slider,hide,menuOpen,menuClose));
         menuClose.setOnMouseClicked(e->editor.translationClose(slider,hide,menuOpen,menuClose));
@@ -132,6 +158,55 @@ public class livreController implements Initializable {
 
 
 
+    }
+
+
+
+
+
+
+    private void findSearchBar(ActionEvent event){
+        l_recherche.setVisible(false);
+        switch (choiceRecherche.getValue()){
+            case "Livre":
+                tablediction.setVisible(false);
+                tablebandedess.setVisible(false);
+                tablemagazine.setVisible(false);
+                tableouv.setVisible(false);
+                tablelivre.setVisible(true);
+                break;
+            case "Dictionnaire":
+                tablediction.setVisible(true);
+                tablebandedess.setVisible(false);
+                tablemagazine.setVisible(false);
+                tableouv.setVisible(false);
+                tablelivre.setVisible(false);
+                break;
+            case "Magazine":
+                tablediction.setVisible(false);
+                tablebandedess.setVisible(false);
+                tablemagazine.setVisible(true);
+                tableouv.setVisible(false);
+                tablelivre.setVisible(false);
+                break;
+            case "Bande déssinée":
+                tablediction.setVisible(false);
+                tablebandedess.setVisible(true);
+                tablemagazine.setVisible(false);
+                tableouv.setVisible(false);
+                tablelivre.setVisible(false);
+                break;
+            default:
+                break;
+
+        }
 
     }
+
+
+
+
+
+
+
 }

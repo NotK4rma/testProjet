@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -20,14 +21,68 @@
    <children>
       <AnchorPane fx:id="background" layoutY="80.0" prefHeight="634.0" prefWidth="1250.0">
          <children>
-            <TableView prefHeight="554.0" prefWidth="1250.0">
+            <TableView fx:id="tableouv" maxWidth="1250" minWidth="1250" prefHeight="554.0" prefWidth="1250.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <columns>
-                  <TableColumn prefWidth="75.0" text="Titre" />
-                  <TableColumn prefWidth="75.0" text="ISBN" />
-                  <TableColumn prefWidth="75.0" text="Auteur" />
-                  <TableColumn prefWidth="75.0" text="Prix" />
-                  <TableColumn prefWidth="75.0" text="Satus : Best Seller ?" />
-                  <TableColumn prefWidth="75.0" text="Nombre d'exemplaire disponible" />
+                  <TableColumn minWidth="-Infinity" prefWidth="200.0" text="Titre" />
+                  <TableColumn minWidth="-Infinity" prefWidth="200.0" text="ISBN" />
+                  <TableColumn minWidth="-Infinity" prefWidth="200.0" text="Prix" />
+                  <TableColumn minWidth="-Infinity" prefWidth="133.0" text="Satus : Best Seller ?" />
+                  <TableColumn minWidth="-Infinity" prefWidth="256.0" text="Nombre d'exemplaire disponible" />
+                  <TableColumn minWidth="-Infinity" prefWidth="134.0" text="Type" />
+               </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
+            <TableView fx:id="tablelivre" maxWidth="1250" minWidth="1250" prefHeight="554.0" prefWidth="1250.0" tableMenuButtonVisible="true" visible="false">
+               <columns>
+                  <TableColumn minWidth="-Infinity" prefWidth="200.0" text="Titre" />
+                  <TableColumn minWidth="-Infinity" prefWidth="200.0" text="ISBN" />
+                  <TableColumn minWidth="-Infinity" prefWidth="200.0" text="Auteur" />
+                  <TableColumn minWidth="-Infinity" prefWidth="200.0" text="Prix" />
+                  <TableColumn minWidth="-Infinity" prefWidth="133.0" text="Satus : Best Seller ?" />
+                  <TableColumn minWidth="-Infinity" prefWidth="256.0" text="Nombre d'exemplaire disponible" />
+                  <TableColumn minWidth="-Infinity" prefWidth="134.0" text="Genre" />
+               </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
+            <TableView fx:id="tablemagazine" maxWidth="1250" minWidth="1250" prefHeight="554.0" prefWidth="1250.0" tableMenuButtonVisible="true" visible="false">
+               <columns>
+                  <TableColumn minWidth="-Infinity" prefWidth="200.0" text="Titre" />
+                  <TableColumn minWidth="-Infinity" prefWidth="200.0" text="ISBN" />
+                  <TableColumn minWidth="-Infinity" prefWidth="200.0" text="Prix" />
+                  <TableColumn minWidth="-Infinity" prefWidth="133.0" text="Satus : Best Seller ?" />
+                  <TableColumn minWidth="-Infinity" prefWidth="256.0" text="Nombre d'exemplaire disponible" />
+                  <TableColumn minWidth="-Infinity" prefWidth="200.0" text="Date de publication" />
+               </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
+            <TableView fx:id="tablediction" maxWidth="1250" minWidth="1250" prefHeight="554.0" prefWidth="1250.0" tableMenuButtonVisible="true" visible="false">
+               <columns>
+                  <TableColumn minWidth="-Infinity" prefWidth="200.0" text="Titre" />
+                  <TableColumn minWidth="-Infinity" prefWidth="160.0" text="ISBN" />
+                  <TableColumn minWidth="-Infinity" prefWidth="197.0" text="Language" />
+                  <TableColumn minWidth="-Infinity" prefWidth="167.0" text="Prix" />
+                  <TableColumn minWidth="-Infinity" prefWidth="150.0" text="Satus : Best Seller ?" />
+                  <TableColumn minWidth="-Infinity" prefWidth="240.0" text="Nombre d'exemplaire disponible" />
+                  <TableColumn minWidth="-Infinity" prefWidth="146.0" text="Nombre de mots" />
+               </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
+            <TableView fx:id="tablebandedess" maxWidth="1250" minWidth="1250" prefHeight="554.0" prefWidth="1250.0" tableMenuButtonVisible="true">
+               <columns>
+                  <TableColumn minWidth="-Infinity" prefWidth="200.0" text="Titre" />
+                  <TableColumn minWidth="-Infinity" prefWidth="200.0" text="ISBN" />
+                  <TableColumn minWidth="-Infinity" prefWidth="200.0" text="Illustrateur" />
+                  <TableColumn minWidth="-Infinity" prefWidth="136.0" text="Prix" />
+                  <TableColumn minWidth="-Infinity" prefWidth="178.0" text="Satus : Best Seller ?" />
+                  <TableColumn minWidth="-Infinity" prefWidth="256.0" text="Nombre d'exemplaire disponible" />
                </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -92,12 +147,12 @@
             </Pane>
          </children>
       </AnchorPane>
-      <Rectangle fx:id="hide" arcHeight="5.0" arcWidth="5.0" fill="#686868cc" height="634.0" layoutY="80.0" stroke="BLACK" strokeType="INSIDE" width="1250.0">
+      <Rectangle fx:id="hide" arcHeight="5.0" arcWidth="5.0" fill="#686868cc" height="634.0" layoutY="80.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="1250.0">
          <effect>
             <DropShadow />
          </effect>
       </Rectangle>
-      <AnchorPane fx:id="slider" prefHeight="200.0" prefWidth="280.0" style="-fx-background-color: #1786b4;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="80.0">
+      <AnchorPane fx:id="slider" prefHeight="200.0" prefWidth="280.0" style="-fx-background-color: #1786b4;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="80.0">
          <children>
             <Pane layoutX="27.0" layoutY="23.0" prefHeight="216.0" prefWidth="226.0">
                <children>
@@ -204,7 +259,21 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Label fx:id="titreScene" alignment="CENTER" layoutX="412.0" layoutY="8.0" prefHeight="30.0" prefWidth="427.0" text="Ouvrage" />
+                  <Label fx:id="titreScene" alignment="CENTER" layoutX="150.0" layoutY="8.0" prefHeight="30.0" prefWidth="427.0" text="Ouvrage" />
+                  <Pane layoutX="771.0" layoutY="16.0" maxHeight="25.0" prefHeight="25.0" prefWidth="335.0">
+                     <children>
+                        <ChoiceBox fx:id="choiceRecherche" layoutX="-14.0" prefHeight="25.0" prefWidth="335.0">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ChoiceBox>
+                        <Label fx:id="l_recherche" layoutX="-14.0" layoutY="1.0" prefHeight="25.0" prefWidth="188.0" text="Type d'ouvrage" textFill="#00000070" translateY="3.0">
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </Pane>
                </children>
             </Pane>
             <HBox prefHeight="20.0" prefWidth="1250.0" spacing="1100.0">
