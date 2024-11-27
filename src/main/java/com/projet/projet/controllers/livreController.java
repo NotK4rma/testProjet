@@ -1,13 +1,12 @@
 package com.projet.projet.controllers;
 
+import com.projet.projet.ouvrage.ouvrage;
 import com.projet.projet.utilsScene.SceneMethods;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -72,19 +71,55 @@ public class livreController implements Initializable {
     private ChoiceBox<String>  choiceRecherche;
 
     @FXML
-    private TableView<?> tablebandedess;
+    private TableColumn<?, ?> c_auteur;
 
     @FXML
-    private TableView<?> tablediction;
+    private TableColumn<?, ?> c_best;
 
     @FXML
-    private TableView<?> tablelivre;
+    private TableColumn<?, ?> c_datepub;
 
     @FXML
-    private TableView<?> tablemagazine;
+    private TableColumn<ouvrage,String> c_dispo;
 
     @FXML
-    private TableView<?> tableouv;
+    private TableColumn<ouvrage,String> c_genre;
+
+    @FXML
+    private TableColumn<ouvrage,String> c_illus;
+
+    @FXML
+    private TableColumn<ouvrage,String> c_isbn;
+
+    @FXML
+    private TableColumn<ouvrage,String> c_lang;
+
+    @FXML
+    private TableColumn<ouvrage,String> c_nbmot;
+
+    @FXML
+    private TableColumn<ouvrage,String> c_prix;
+
+    @FXML
+    private TableColumn<ouvrage,String> c_titre;
+
+
+
+    @FXML
+    private TableView<ouvrage> tableouv;
+    @FXML
+    private TableView<?> tlivre;
+
+    @FXML
+    private TableView<?> tmagazine;
+
+    @FXML
+    private TableView<?> tbandedess;
+
+    @FXML
+    private TableView<?> tdict;
+
+
     @FXML
     private Label l_recherche;
 
@@ -101,6 +136,24 @@ public class livreController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        c_lang.setCellValueFactory(new PropertyValueFactory<>("langue"));
+        c_nbmot.setCellValueFactory(new PropertyValueFactory<>("nombreMots"));
+        c_illus.setCellValueFactory(new PropertyValueFactory<>("illustrateur"));
+        c_datepub.setCellValueFactory(new PropertyValueFactory<>("datePublication"));
+        c_genre.setCellValueFactory(new PropertyValueFactory<>("genre"));
+        c_auteur.setCellValueFactory(new PropertyValueFactory<>("auteur"));
+        c_titre.setCellValueFactory(new PropertyValueFactory<>("title"));
+        c_isbn.setCellValueFactory(new PropertyValueFactory<>("isbn"));
+        c_prix.setCellValueFactory(new PropertyValueFactory<>("prix"));
+        c_best.setCellValueFactory(new PropertyValueFactory<>("bestseller"));
+        c_dispo.setCellValueFactory(new PropertyValueFactory<>("nbexemplaire"));
+
+
+
+
+
+
 
         choiceRecherche.getItems().addAll(options);
         choiceRecherche.setOnAction(this::findSearchBar);
@@ -189,32 +242,32 @@ public class livreController implements Initializable {
         l_recherche.setVisible(false);
         switch (choiceRecherche.getValue()){
             case "Livre":
-                tablediction.setVisible(false);
-                tablebandedess.setVisible(false);
-                tablemagazine.setVisible(false);
                 tableouv.setVisible(false);
-                tablelivre.setVisible(true);
+                tbandedess.setVisible(false);
+                tmagazine.setVisible(false);
+                tdict.setVisible(false);
+                tlivre.setVisible(true);
                 break;
             case "Dictionnaire":
-                tablediction.setVisible(true);
-                tablebandedess.setVisible(false);
-                tablemagazine.setVisible(false);
                 tableouv.setVisible(false);
-                tablelivre.setVisible(false);
+                tbandedess.setVisible(false);
+                tmagazine.setVisible(false);
+                tdict.setVisible(true);
+                tlivre.setVisible(false);
                 break;
             case "Magazine":
-                tablediction.setVisible(false);
-                tablebandedess.setVisible(false);
-                tablemagazine.setVisible(true);
                 tableouv.setVisible(false);
-                tablelivre.setVisible(false);
+                tbandedess.setVisible(false);
+                tmagazine.setVisible(true);
+                tdict.setVisible(false);
+                tlivre.setVisible(false);
                 break;
             case "Bande déssinée":
-                tablediction.setVisible(false);
-                tablebandedess.setVisible(true);
-                tablemagazine.setVisible(false);
                 tableouv.setVisible(false);
-                tablelivre.setVisible(false);
+                tbandedess.setVisible(true);
+                tmagazine.setVisible(false);
+                tdict.setVisible(false);
+                tlivre.setVisible(false);
                 break;
             default:
                 break;

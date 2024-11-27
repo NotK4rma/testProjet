@@ -23,66 +23,65 @@
          <children>
             <TableView fx:id="tableouv" maxWidth="1250" minWidth="1250" prefHeight="554.0" prefWidth="1250.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <columns>
-                  <TableColumn minWidth="-Infinity" prefWidth="200.0" text="Titre" />
-                  <TableColumn minWidth="-Infinity" prefWidth="200.0" text="ISBN" />
-                  <TableColumn minWidth="-Infinity" prefWidth="200.0" text="Prix" />
-                  <TableColumn minWidth="-Infinity" prefWidth="133.0" text="Satus : Best Seller ?" />
-                  <TableColumn minWidth="-Infinity" prefWidth="256.0" text="Nombre d'exemplaire disponible" />
-                  <TableColumn minWidth="-Infinity" prefWidth="134.0" text="Type" />
+                  <TableColumn fx:id="c_titre" minWidth="-Infinity" prefWidth="200.0" text="Titre" />
+                  <TableColumn fx:id="c_isbn" minWidth="-Infinity" prefWidth="200.0" text="ISBN" />
+                  <TableColumn fx:id="c_prix" minWidth="-Infinity" prefWidth="200.0" text="Prix" />
+                  <TableColumn fx:id="c_best" minWidth="-Infinity" prefWidth="133.0" text="Satus : Best Seller ?" />
+                  <TableColumn fx:id="c_dispo" minWidth="-Infinity" prefWidth="256.0" text="Nombre d'exemplaire disponible" />
                </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
             </TableView>
-            <TableView fx:id="tablelivre" maxWidth="1250" minWidth="1250" prefHeight="554.0" prefWidth="1250.0" tableMenuButtonVisible="true" visible="false">
+            <TableView fx:id="tlivre" maxWidth="1250" minWidth="1250" prefHeight="554.0" prefWidth="1250.0" tableMenuButtonVisible="true" visible="false">
                <columns>
-                  <TableColumn minWidth="-Infinity" prefWidth="200.0" text="Titre" />
-                  <TableColumn minWidth="-Infinity" prefWidth="200.0" text="ISBN" />
-                  <TableColumn minWidth="-Infinity" prefWidth="200.0" text="Auteur" />
-                  <TableColumn minWidth="-Infinity" prefWidth="200.0" text="Prix" />
-                  <TableColumn minWidth="-Infinity" prefWidth="133.0" text="Satus : Best Seller ?" />
-                  <TableColumn minWidth="-Infinity" prefWidth="256.0" text="Nombre d'exemplaire disponible" />
-                  <TableColumn minWidth="-Infinity" prefWidth="134.0" text="Genre" />
+                  <TableColumn fx:id="c_titre" minWidth="-Infinity" prefWidth="200.0" text="Titre" />
+                  <TableColumn fx:id="c_isbn" minWidth="-Infinity" prefWidth="200.0" text="ISBN" />
+                  <TableColumn fx:id="c_prix" minWidth="-Infinity" prefWidth="200.0" text="Prix" />
+                  <TableColumn fx:id="c_best" minWidth="-Infinity" prefWidth="133.0" text="Satus : Best Seller ?" />
+                  <TableColumn fx:id="c_dispo" minWidth="-Infinity" prefWidth="256.0" text="Nombre d'exemplaire disponible" />
+                  <TableColumn fx:id="c_auteur" minWidth="-Infinity" prefWidth="200.0" text="Auteur" />
+                  <TableColumn fx:id="c_genre" minWidth="-Infinity" prefWidth="134.0" text="Genre" />
                </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
             </TableView>
-            <TableView fx:id="tablemagazine" maxWidth="1250" minWidth="1250" prefHeight="554.0" prefWidth="1250.0" tableMenuButtonVisible="true" visible="false">
+            <TableView fx:id="tmagazine" maxWidth="1250" minWidth="1250" prefHeight="554.0" prefWidth="1250.0" tableMenuButtonVisible="true" visible="false">
                <columns>
-                  <TableColumn minWidth="-Infinity" prefWidth="200.0" text="Titre" />
-                  <TableColumn minWidth="-Infinity" prefWidth="200.0" text="ISBN" />
-                  <TableColumn minWidth="-Infinity" prefWidth="200.0" text="Prix" />
-                  <TableColumn minWidth="-Infinity" prefWidth="133.0" text="Satus : Best Seller ?" />
-                  <TableColumn minWidth="-Infinity" prefWidth="256.0" text="Nombre d'exemplaire disponible" />
-                  <TableColumn minWidth="-Infinity" prefWidth="200.0" text="Date de publication" />
+                  <TableColumn fx:id="c_titre" minWidth="-Infinity" prefWidth="200.0" text="Titre" />
+                  <TableColumn fx:id="c_isbn" minWidth="-Infinity" prefWidth="200.0" text="ISBN" />
+                  <TableColumn fx:id="c_prix" minWidth="-Infinity" prefWidth="200.0" text="Prix" />
+                  <TableColumn fx:id="c_best" minWidth="-Infinity" prefWidth="133.0" text="Satus : Best Seller ?" />
+                  <TableColumn fx:id="c_dispo" minWidth="-Infinity" prefWidth="256.0" text="Nombre d'exemplaire disponible" />
+                  <TableColumn fx:id="c_datepub" minWidth="-Infinity" prefWidth="200.0" text="Date de publication" />
                </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
             </TableView>
-            <TableView fx:id="tablediction" maxWidth="1250" minWidth="1250" prefHeight="554.0" prefWidth="1250.0" tableMenuButtonVisible="true" visible="false">
+            <TableView fx:id="tbandedess" maxWidth="1250" minWidth="1250" prefHeight="554.0" prefWidth="1250.0" tableMenuButtonVisible="true" visible="false">
                <columns>
-                  <TableColumn minWidth="-Infinity" prefWidth="200.0" text="Titre" />
-                  <TableColumn minWidth="-Infinity" prefWidth="160.0" text="ISBN" />
-                  <TableColumn minWidth="-Infinity" prefWidth="197.0" text="Language" />
-                  <TableColumn minWidth="-Infinity" prefWidth="167.0" text="Prix" />
-                  <TableColumn minWidth="-Infinity" prefWidth="150.0" text="Satus : Best Seller ?" />
-                  <TableColumn minWidth="-Infinity" prefWidth="240.0" text="Nombre d'exemplaire disponible" />
-                  <TableColumn minWidth="-Infinity" prefWidth="146.0" text="Nombre de mots" />
+                  <TableColumn fx:id="c_titre" minWidth="-Infinity" prefWidth="200.0" text="Titre" />
+                  <TableColumn fx:id="c_isbn" minWidth="-Infinity" prefWidth="200.0" text="ISBN" />
+                  <TableColumn fx:id="c_prix" minWidth="-Infinity" prefWidth="200.0" text="Prix" />
+                  <TableColumn fx:id="c_best" minWidth="-Infinity" prefWidth="133.0" text="Satus : Best Seller ?" />
+                  <TableColumn fx:id="c_dispo" minWidth="-Infinity" prefWidth="256.0" text="Nombre d'exemplaire disponible" />
+                  <TableColumn fx:id="c_illus" minWidth="-Infinity" prefWidth="200.0" text="Illustrateur" />
                </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
             </TableView>
-            <TableView fx:id="tablebandedess" maxWidth="1250" minWidth="1250" prefHeight="554.0" prefWidth="1250.0" tableMenuButtonVisible="true">
+            <TableView fx:id="tdict" maxWidth="1250" minWidth="1250" prefHeight="554.0" prefWidth="1250.0" tableMenuButtonVisible="true" visible="false">
                <columns>
-                  <TableColumn minWidth="-Infinity" prefWidth="200.0" text="Titre" />
-                  <TableColumn minWidth="-Infinity" prefWidth="200.0" text="ISBN" />
-                  <TableColumn minWidth="-Infinity" prefWidth="200.0" text="Illustrateur" />
-                  <TableColumn minWidth="-Infinity" prefWidth="136.0" text="Prix" />
-                  <TableColumn minWidth="-Infinity" prefWidth="178.0" text="Satus : Best Seller ?" />
-                  <TableColumn minWidth="-Infinity" prefWidth="256.0" text="Nombre d'exemplaire disponible" />
+                  <TableColumn fx:id="c_titre" minWidth="-Infinity" prefWidth="200.0" text="Titre" />
+                  <TableColumn fx:id="c_isbn" minWidth="-Infinity" prefWidth="200.0" text="ISBN" />
+                  <TableColumn fx:id="c_prix" minWidth="-Infinity" prefWidth="200.0" text="Prix" />
+                  <TableColumn fx:id="c_best" minWidth="-Infinity" prefWidth="133.0" text="Satus : Best Seller ?" />
+                  <TableColumn fx:id="c_dispo" minWidth="-Infinity" prefWidth="256.0" text="Nombre d'exemplaire disponible" />
+                  <TableColumn fx:id="c_lang" minWidth="-Infinity" prefWidth="197.0" text="Language" />
+                  <TableColumn fx:id="c_nbmot" minWidth="-Infinity" prefWidth="146.0" text="Nombre de mots" />
                </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -147,12 +146,12 @@
             </Pane>
          </children>
       </AnchorPane>
-      <Rectangle fx:id="hide" arcHeight="5.0" arcWidth="5.0" fill="#686868cc" height="634.0" layoutY="80.0" stroke="BLACK" strokeType="INSIDE" width="1250.0">
+      <Rectangle fx:id="hide" arcHeight="5.0" arcWidth="5.0" fill="#686868cc" height="634.0" layoutY="80.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="1250.0">
          <effect>
             <DropShadow />
          </effect>
       </Rectangle>
-      <AnchorPane fx:id="slider" prefHeight="200.0" prefWidth="280.0" style="-fx-background-color: #1786b4;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="80.0">
+      <AnchorPane fx:id="slider" prefHeight="200.0" prefWidth="280.0" style="-fx-background-color: #1786b4;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="80.0">
          <children>
             <Pane layoutX="27.0" layoutY="23.0" prefHeight="216.0" prefWidth="226.0">
                <children>

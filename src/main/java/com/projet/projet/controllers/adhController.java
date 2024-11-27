@@ -1,10 +1,15 @@
 package com.projet.projet.controllers;
 
+import com.projet.projet.adherant.adherent;
+import com.projet.projet.bibliothéque.Bibliotheque;
 import com.projet.projet.utilsScene.SceneMethods;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -66,17 +71,50 @@ public class adhController implements Initializable {
     private Label titreScene;
     @FXML
     private Rectangle hide;
+    @FXML
+    private TableColumn<adherent, String> c_cin;
 
-    private SceneMethods editor = new SceneMethods();
-    private String css= "../Styles/RegularStyles.css";
-    private String css2= "../Styles/newWindowStyles.css";
+    @FXML
+    private TableColumn<adherent, String> c_id;
+
+    @FXML
+    private TableColumn<adherent, String> c_nom;
+
+    @FXML
+    private TableColumn<adherent, String> c_prenom;
+    @FXML
+    private TableView<adherent> t_adh;
 
 
 
+
+    private final SceneMethods editor = new SceneMethods();
+    private final String css= "../Styles/RegularStyles.css";
+    private final String css2= "../Styles/newWindowStyles.css";
+
+    private Bibliotheque library;
+
+    public void getInstance(Bibliotheque library){
+        this.library = library;
+    }
+
+   /* private void afficherAdhérent(){
+
+
+
+
+    }*/
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        c_id.setCellValueFactory(new PropertyValueFactory<>("nbemprunt"));
+        c_cin.setCellValueFactory(new PropertyValueFactory<>("cin"));
+        c_nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
+        c_prenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
+
+
 
         menuOpen.setOnMouseClicked(e -> editor.translationOpen(slider, hide, menuOpen, menuClose));
         menuClose.setOnMouseClicked(e -> editor.translationClose(slider, hide, menuOpen, menuClose));
