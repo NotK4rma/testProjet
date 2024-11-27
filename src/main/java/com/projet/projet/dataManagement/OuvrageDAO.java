@@ -185,6 +185,35 @@ public class OuvrageDAO {
 
     }
 
+    public static List<ouvrage> chercherOuvrageISBN(String isbn){
+        String query = "select * from ouvrage where isbn = ?";
+        List<ouvrage> Louv = new ArrayList<>();
+        try(Connection conn = DataBaseConnection.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(query)){
+                stmt.setString(1,isbn);
+                try(ResultSet rs = stmt.executeQuery()){
+                    while(rs.next()){
+                        ouvrage ouv = new ouvrage(
+                              rs.getString("titre"),
+                              rs.getString("isbn"),
+                              rs.getDouble("prix"),
+                              rs.getBoolean("bestSeller"),
+                              rs.getInt("nbExemplaire")
+                        );
+                        Louv.add(ouv);
+                    }
+
+                }
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return Louv;
+
+    }
+
+
+
     
 
 
