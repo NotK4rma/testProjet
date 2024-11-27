@@ -29,3 +29,10 @@
     -fx-background-color : #EDF2F7;
 
 }
+
+#choix_type{
+    -fx-background-radius : 7px;
+    -fx-border-radius : 7px;
+
+
+}

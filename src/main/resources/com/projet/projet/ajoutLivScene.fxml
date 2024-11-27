@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projet.projet.controllers.ajoutOuvController">
    <children>
       <VBox alignment="CENTER" layoutX="61.0" layoutY="49.0" prefHeight="302.0" prefWidth="479.0" spacing="5.0" AnchorPane.topAnchor="49.0">
          <children>
@@ -21,7 +21,7 @@
                            <padding>
                               <Insets left="10.0" />
                            </padding></Label>
-                        <TextField />
+                        <TextField fx:id="tftitre" minHeight="-Infinity" prefHeight="35.0" />
                      </children>
                   </VBox>
                   <VBox layoutX="20.0" layoutY="10.0" prefHeight="100.0" prefWidth="229.0" spacing="5.0">
@@ -30,7 +30,7 @@
                            <padding>
                               <Insets left="10.0" />
                            </padding></Label>
-                        <TextField />
+                        <TextField fx:id="tfisbn" minHeight="-Infinity" prefHeight="35.0" />
                      </children>
                   </VBox>
                </children>
@@ -42,22 +42,22 @@
                <children>
                   <VBox prefHeight="100.0" prefWidth="229.0" spacing="5.0">
                      <children>
-                        <Label prefHeight="17.0" prefWidth="171.0" text="Auteur :">
+                        <Label prefHeight="17.0" prefWidth="171.0" text="Prix : ">
                            <padding>
                               <Insets left="10.0" />
                            </padding>
                         </Label>
-                        <TextField />
+                        <TextField fx:id="tfprix" minHeight="-Infinity" prefHeight="35.0" />
                      </children>
                   </VBox>
                   <VBox layoutX="20.0" layoutY="10.0" prefHeight="100.0" prefWidth="229.0" spacing="5.0">
                      <children>
-                        <Label prefHeight="17.0" prefWidth="175.0" text="Prix :">
+                        <Label prefHeight="17.0" prefWidth="175.0" text="Best seller :">
                            <padding>
                               <Insets left="10.0" />
                            </padding>
                         </Label>
-                        <TextField />
+                        <TextField fx:id="tfseller" minHeight="-Infinity" prefHeight="35.0" />
                      </children>
                   </VBox>
                </children>
@@ -69,12 +69,12 @@
                <children>
                   <VBox prefHeight="100.0" prefWidth="229.0" spacing="5.0">
                      <children>
-                        <Label prefHeight="17.0" prefWidth="166.0" text="Best Seller ? ">
+                        <Label prefHeight="17.0" prefWidth="215.0" text="Exemplaire Disponible : ">
                            <padding>
                               <Insets left="10.0" />
                            </padding>
                         </Label>
-                        <TextField />
+                        <TextField fx:id="tfnbexemp" minHeight="-Infinity" prefHeight="35.0" />
                      </children>
                   </VBox>
                   <VBox layoutX="20.0" layoutY="10.0" prefHeight="100.0" prefWidth="229.0" spacing="5.0">
@@ -84,7 +84,7 @@
                               <Insets left="10.0" />
                            </padding>
                         </Label>
-                        <ChoiceBox prefHeight="25.0" prefWidth="244.0" />
+                        <ChoiceBox fx:id="choix_type" prefHeight="0.0" prefWidth="225.0" />
                      </children>
                   </VBox>
                </children>
