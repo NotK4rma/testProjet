@@ -5,79 +5,117 @@
 package com.projet.projet.pret;
 import com.projet.projet.adherant.adherent;
 import com.projet.projet.ouvrage.livre;
+import com.projet.projet.ouvrage.ouvrage;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-/**
- *
- * @author hp
- */
+
 public class prets {
     private int numPre;
-    private adherent adh;
-    private livre liv;
+    private int cinAdh;
+    private String ISBNouv;
     private LocalDate dateEmp;
     private LocalDate dateRetour;
     private static int id=0;
+
+
 
     public int getNumPre() {
         return numPre;
     }
 
-    public adherent getAdh() {
-        return adh;
-    }
 
-    public livre getLivre() {
-        return liv;
-    }
+
+
+
 
     public LocalDate getDateEmp() {
         return dateEmp;
     }
 
+
+
     public LocalDate getDateRetour() {
         return dateRetour;
     }
+
+
 
     public void setNumPre(int numPre) {
         this.numPre = numPre;
     }
 
-    public void setAdh(adherent adh) {
-        this.adh = adh;
+
+    public int getCinAdh() {
+        return cinAdh;
     }
 
-    public void setLivre(livre livre) {
-        this.liv = livre;
+
+
+    public void setCinAdh(int cinAdh) {
+        this.cinAdh = cinAdh;
     }
+
+
+    public String getISBNouv() {
+        return ISBNouv;
+    }
+
+
+
+    public void setISBNouv(String ISBNouv) {
+        this.ISBNouv = ISBNouv;
+    }
+
+
 
     public void setDateEmp(LocalDate dateEmp) {
         this.dateEmp = dateEmp;
     }
 
+
+
+
     public void setDateRetour(LocalDate dateRetour) {
         this.dateRetour = dateRetour;
     }
-    public prets(adherent adh, livre liv,LocalDate dateEmp, LocalDate dateRetour){
+
+
+
+    public prets(int cin, String isbn,LocalDate dateEmp, LocalDate dateRetour){
         this.numPre=id++;
-        this.adh=adh;
-        this.liv=liv;
+        this.cinAdh=cin;
+        this.ISBNouv=isbn;
         this.dateEmp=dateEmp;
         this.dateRetour=dateRetour;
         
     }
-    private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-DD");
-    
-    public void afficherDetailsPret (){
+
+    public prets(int cin, String isbn,LocalDate dateEmp){
+        this.numPre=id++;
+        this.cinAdh=cin;
+        this.ISBNouv=isbn;
+        this.dateEmp=dateEmp;
+        this.dateRetour=null;
+
+    }
+
+
+
+
+
+    //private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-DD");
+
+
+    /*public void afficherDetailsPret (){
         if (this.dateRetour==null){
-            System.out.println("L'indentifiant est: "+ numPre +" L'adherent est: "+ adh.toString()+" le livre est : "+liv.toString()+" date de l'emprunt : "+this.dateEmp.format(formatter)+" date de retour indisponible " );
+            System.out.println("L'indentifiant est: "+ numPre +" L'adherent est: "+ adh.toString()+" le livre est : "+ouv.toString()+" date de l'emprunt : "+this.dateEmp.format(formatter)+" date de retour indisponible " );
         }
         else{
-            System.out.println("L'indentifiant est: "+ numPre +" L'adherent est: "+ adh.toString()+" le livre est : "+liv.toString()+" date de l'emprunt : "+this.dateEmp.format(formatter)+" date de retour : "+this.dateRetour.format(formatter) );
+            System.out.println("L'indentifiant est: "+ numPre +" L'adherent est: "+ adh.toString()+" le livre est : "+ouv.toString()+" date de l'emprunt : "+this.dateEmp.format(formatter)+" date de retour : "+this.dateRetour.format(formatter) );
         }
         
-    }
+    }*/
     
     
 }

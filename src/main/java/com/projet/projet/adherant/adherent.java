@@ -20,6 +20,8 @@ public class adherent {
         this.nom=nom;
         this.prenom=prenom;        
     }
+
+
     public int getCin() {
         return cin;
     }

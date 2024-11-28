@@ -10,15 +10,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AdherentDAO {
-    public static void saveAdherant(int c, String n, String p){
+    public static void saveAdherant(adherent adh){
         String query = "insert into adherent(cin,nom,prenom) values(?,?,?)";
         try (
             Connection conn = DataBaseConnection.getConnection();
             PreparedStatement stmt = conn.prepareStatement(query)
         ){
-            stmt.setInt(1,c);
-            stmt.setString(2,n);
-            stmt.setString(3,p);
+            stmt.setInt(1,adh.getCin());
+            stmt.setString(2,adh.getNom());
+            stmt.setString(3,adh.getPrenom());
 
             stmt.executeUpdate();
             System.out.println("adherent enregistre");
@@ -79,6 +79,65 @@ public class AdherentDAO {
 
 
     }
+
+
+
+    public static void deleteAdherent(int cin){
+        String query= "delete from adherent where cin = ?";
+        try(
+                Connection conn = DataBaseConnection.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(query)
+        ){
+            stmt.setInt(1,cin);
+            stmt.executeUpdate();
+
+        }catch(SQLException e){
+            e.printStackTrace();
+
+        }
+
+    }
+
+    public static void incrementNombreEmpruntAdh(int cin){
+        String query= "update adherent set nbEmprunt = nbEmprunt +1 where cin = ?";
+        try(
+                Connection conn = DataBaseConnection.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(query)
+        ){
+            stmt.setInt(1,cin);
+            stmt.executeUpdate();
+
+        }catch(SQLException e){
+            e.printStackTrace();
+
+        }
+
+    }
+
+
+    public static int getNombreEmpruntAdh(int cin){
+        String query= "select * from adherent  where cin = ?";
+        try(
+                Connection conn = DataBaseConnection.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(query)
+        ){
+            stmt.setInt(1,cin);
+            try(ResultSet rs = stmt.executeQuery()){
+                if (rs.next()){
+                    return rs.getInt("nbEmprunt");
+                }
+
+            }
+
+        }catch(SQLException e){
+            e.printStackTrace();
+
+        }
+        return -1;
+
+    }
+
+
 
 
 

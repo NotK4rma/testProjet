@@ -1,7 +1,7 @@
 package com.projet.projet.controllers;
 
 import com.projet.projet.adherant.adherent;
-import com.projet.projet.bibliothéque.Bibliotheque;
+
 import com.projet.projet.utilsScene.SceneMethods;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -92,11 +92,7 @@ public class adhController implements Initializable {
     private final String css= "../Styles/RegularStyles.css";
     private final String css2= "../Styles/newWindowStyles.css";
 
-    private Bibliotheque library;
 
-    public void getInstance(Bibliotheque library){
-        this.library = library;
-    }
 
    /* private void afficherAdhérent(){
 

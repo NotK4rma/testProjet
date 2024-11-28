@@ -213,8 +213,64 @@ public class OuvrageDAO {
     }
 
 
+    public static void deleteOuvrage(String isbn){
+        String query= "delete from ouvrage where isbn = ?";
+        try(
+                Connection conn = DataBaseConnection.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(query)
+                ){
+            stmt.setString(1,isbn);
+            stmt.executeUpdate();
 
-    
+        }catch(SQLException e){
+            e.printStackTrace();
+
+        }
+
+    }
+
+
+    public static int getNombreExemplaire(String isbn){
+        String query= "select * from ouvrage  where isbn = ?";
+        try(
+                Connection conn = DataBaseConnection.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(query)
+        ){
+            stmt.setString(1,isbn);
+            try(ResultSet rs = stmt.executeQuery()){
+                if (rs.next()){
+                    return rs.getInt("nbExemplaire");
+                }
+
+            }
+
+        }catch(SQLException e){
+            e.printStackTrace();
+
+        }
+        return -1;
+
+    }
+
+
+    public static void incrementNombreExemplaire(String isbn){
+        String query= "update ouvrage set nbExemplaire = nbExemplaire +1 where isbn = ?";
+        try(
+                Connection conn = DataBaseConnection.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(query)
+        ){
+            stmt.setString(1,isbn);
+            stmt.executeUpdate();
+
+        }catch(SQLException e){
+            e.printStackTrace();
+
+        }
+
+    }
+
+
+
 
 
 
