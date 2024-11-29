@@ -301,6 +301,10 @@ public class EmpruntDAO {
         return 0;
     }
 
+
+
+
+
     public int existeEmrpunt(int cin, String isbn){
         String query = "select * from emprunt where idAdherant = ? and idOuvrage = ?";
         int nbColumn = 0;
@@ -326,21 +330,21 @@ public class EmpruntDAO {
 
     another example of existe(count)emprunt
     public int countEmprunt(int cin, String isbn) {
-    String query = "SELECT COUNT(*) AS count FROM emprunt WHERE idAdherant = ? AND idOuvrage = ?";
-    try (Connection conn = DataBaseConnection.getConnection();
-         PreparedStatement stmt = conn.prepareStatement(query)) {
-        stmt.setInt(1, cin);
-        stmt.setString(2, isbn);
-        try (ResultSet rs = stmt.executeQuery()) {
-            if (rs.next()) {
-                return rs.getInt("count"); // Return the count of matching rows
+        String query = "SELECT COUNT(*) AS count FROM emprunt WHERE idAdherant = ? AND idOuvrage = ?";
+        try (Connection conn = DataBaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, cin);
+            stmt.setString(2, isbn);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt("count"); // Return the count of matching rows
+                }
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-    } catch (SQLException e) {
-        e.printStackTrace();
+        return 0; // No matches found
     }
-    return 0; // No matches found
-}
 */
 
 

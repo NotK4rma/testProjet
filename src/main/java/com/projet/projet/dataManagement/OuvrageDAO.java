@@ -6,49 +6,56 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class OuvrageDAO {
-    public static void saveOuvrage(ouvrage ouv){
+    public static int saveOuvrage(String titre, String isbn, double prix, boolean seller, int nbexmplr, String auteur, String genre, String illust, LocalDate pub, String lang, int mot){
         String query = "insert into adherent(isbn,titre,prix,bestSeller,nbExemplaire,auteur,genre,illustrateur,datePublication,langue,nbMot) values(?,?,?,?,?,?,?,?,?,?,?)";
         try (
                 Connection conn = DataBaseConnection.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(query)
         ){
-            stmt.setString(1,ouv.getIsbn());
-            stmt.setString(2,ouv.getTitle());
-            stmt.setDouble(3,ouv.getPrix());
-            stmt.setBoolean(4,ouv.getBestseller());
-            stmt.setInt(5,ouv.getNbexemplaire());
-            if(ouv instanceof livre){
-                stmt.setString(6,((livre)ouv).getAuteur());
-                stmt.setString(7,((livre)ouv).getGenre());
+            stmt.setString(1,isbn);
+            stmt.setString(2,titre);
+            stmt.setDouble(3,prix);
+            stmt.setBoolean(4,seller);
+            stmt.setInt(5,nbexmplr);
+            if(!(auteur.isBlank())){
+                stmt.setString(6,auteur);
+                stmt.setString(7,genre);
                 System.out.println("livre");
             }
-            else if(ouv instanceof bandeDessinee){
-                stmt.setString(8,((bandeDessinee)ouv).getIllustrateur());
+            else if(!(illust.isBlank())){
+                stmt.setString(8,illust);
                 System.out.println("bd");
 
-            } else if (ouv instanceof magazine) {
-                stmt.setDate(9,java.sql.Date.valueOf(((magazine)ouv).getDatePublication()));
+            } else if (pub!=null) {
+                stmt.setDate(9,java.sql.Date.valueOf(pub));
                 System.out.println("magazine");
 
             }
             else{
-                stmt.setString(10,((dictionnaire)ouv).getLangue());
-                stmt.setInt(11,((dictionnaire)ouv).getNombreMots());
+                stmt.setString(10,lang);
+                stmt.setInt(11,mot);
                 System.out.println("dictionnarie");
 
             }
 
 
-            stmt.executeUpdate();
-            System.out.println("ouvrage enregistre");
+            int rowsajt = stmt.executeUpdate();
+            if(rowsajt>0){
+                System.out.println("ouvrage enregistre");
+                return 0;
+            }
+            else return -1;
+
 
         }
         catch (SQLException e){
             e.printStackTrace();
+            return -1;
         }
 
     }
@@ -213,17 +220,22 @@ public class OuvrageDAO {
     }
 
 
-    public static void deleteOuvrage(String isbn){
+    public static int deleteOuvrage(String isbn){
         String query= "delete from ouvrage where isbn = ?";
         try(
                 Connection conn = DataBaseConnection.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(query)
                 ){
             stmt.setString(1,isbn);
-            stmt.executeUpdate();
+            int res = stmt.executeUpdate();
+            if(res > 0){
+                return 1;
+            }
+            else return 0;
 
         }catch(SQLException e){
             e.printStackTrace();
+            return -1;
 
         }
 
@@ -267,6 +279,23 @@ public class OuvrageDAO {
 
         }
 
+    }
+
+
+    public static int existeOuvrage(String isbn) {
+        String query = "SELECT COUNT(*) as count FROM ouvrage WHERE isbn = ? ";
+        try (Connection conn = DataBaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setString(1, isbn);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt("count");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return -1;
     }
 
 

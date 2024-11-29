@@ -30,7 +30,7 @@
 
 }
 
-#choix_type{
+#choix_type,#datepub{
     -fx-background-radius : 7px;
     -fx-border-radius : 7px;
 

@@ -138,6 +138,23 @@ public class AdherentDAO {
     }
 
 
+    public int existeAdherent(int cin) {
+        String query = "SELECT COUNT(*) as count FROM aherent WHERE cin = ? ";
+        try (Connection conn = DataBaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, cin);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt("count"); // Return the count of matching rows
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return -1;
+    }
+
+
 
 
 

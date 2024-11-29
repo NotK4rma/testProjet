@@ -29,6 +29,14 @@ public class SceneMethods {
         }
     }
 
+    public void alertErrorWindow(){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Erreur");
+        alert.setHeaderText("Vérifier les champs de texte!");
+        alert.setContentText("Prière de remplir tous les champs disponibles.");
+        alert.showAndWait();
+    }
+
 
 
     public void deconnect(Stage stage) throws IOException {
