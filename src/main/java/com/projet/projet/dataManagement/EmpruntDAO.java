@@ -264,10 +264,41 @@ public class EmpruntDAO {
     }
 
 
-    public void updateEmprunt(int cin, String ISBN){
-        String query = "update emprunt set ";
+    public int updateRestituerEmprunt(int cin, String isbn, LocalDate dateRetour){
+        LocalDate d_emp = getDateEmprunt(cin,isbn);
+        if(d_emp == null){
+            System.out.println("date d'emprunt est null");
+            return -1;
+        } else if (dateRetour.isBefore(d_emp)) {
+            System.out.println("date de retour avant date d'emprunt");
+            return -2;
+        }
+        else {
 
+            String query = "update emprunt set dateRetour = ? where idAdherant = ? and idOuvrage = ?";
+            try (
+                    Connection conn = DataBaseConnection.getConnection();
+                    PreparedStatement stmt = conn.prepareStatement(query)) {
 
+                stmt.setDate(1, java.sql.Date.valueOf(dateRetour));
+                stmt.setInt(2, cin);
+                stmt.setString(3, isbn);
+
+                int rowsUpadted = stmt.executeUpdate();
+                if(rowsUpadted>0){
+                    System.out.println("succes");
+                }
+                else {
+                    System.out.println("isbn ou cin n'existe pas");
+                    return -3;
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return 0;
     }
 
     public int existeEmrpunt(int cin, String isbn){
@@ -311,6 +342,31 @@ public class EmpruntDAO {
     return 0; // No matches found
 }
 */
+
+
+    public static LocalDate getDateEmprunt(int cin, String isbn){
+
+        String query= "select * from emprunt where cin = ? and isbn = ?";
+        try(
+                Connection conn = DataBaseConnection.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(query)
+        ){
+            stmt.setInt(1,cin);
+            stmt.setString(2,isbn);
+            try(ResultSet rs = stmt.executeQuery()){
+                if (rs.next()){
+                    return (rs.getDate("dateEmprunt")).toLocalDate();
+                }
+
+            }
+
+        }catch(SQLException e){
+            e.printStackTrace();
+
+        }
+        return null;
+
+    }
 
 
 
