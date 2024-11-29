@@ -123,12 +123,17 @@ public class livreController implements Initializable {
     @FXML
     private Label l_recherche;
 
+    @FXML
+    private Label l_nomlib;
+
+
     private String css= "../Styles/RegularStyles.css";
     private String css2= "../Styles/newWindowStyles.css";
 
     private SceneMethods editor = new SceneMethods();
 
     private String[] options = {"Livre", "Dictionnaire", "Magazine", "Bande déssinée"};
+    private static String libName;
 
 
 
@@ -136,6 +141,16 @@ public class livreController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+
+        if(loginController.getLibName()==null) {
+            libName = signupController.getLibName();
+        }else{
+            libName =loginController.getLibName();
+        }
+
+        l_nomlib.setText(libName);
+
 
         c_lang.setCellValueFactory(new PropertyValueFactory<>("langue"));
         c_nbmot.setCellValueFactory(new PropertyValueFactory<>("nombreMots"));

@@ -1,5 +1,6 @@
 package com.projet.projet.controllers;
 
+import com.projet.projet.dataManagement.LibrarianDAO;
 import com.projet.projet.utilsScene.SceneMethods;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -39,6 +40,7 @@ public class loginController implements Initializable {
     private TextField username;
 
     private SceneMethods editor = new SceneMethods();
+    private static String libName=null;
 
 
 
@@ -65,4 +67,48 @@ public class loginController implements Initializable {
         });
 
     }
+
+
+    private void logIn() throws IOException {
+        String un = username.getText();
+        String pw = mdp.getText();
+        if(un.isBlank() || pw.isBlank() ){
+            SceneMethods.alertErrorWindow();
+        }
+        else {
+            boolean res = LibrarianDAO.getLibr(un,pw);
+            if (!res){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Erreur ");
+                alert.setHeaderText("Echec de connexion!");
+                alert.setContentText("Un y'avait une erreur lors de la connexion ou les information entrées sont erronées , essayez de nouveau");
+                alert.showAndWait();
+                mdp.clear();
+                username.clear();
+
+            }
+            else{
+                libName=un;
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Succès");
+                alert.setHeaderText("Ajout avec succès!");
+                alert.setContentText("L'ouvrage a été ajouté avec succès");
+                alert.showAndWait();
+                editor.switchScene((Stage) b_close.getScene().getWindow(),"../homeScene.fxml", "../Styles/RegularStyles.css");
+
+            }
+
+        }
+    }
+
+
+    public static String getLibName(){
+        return libName;
+    }
+
+    public static void revokeLibName(){
+        libName=null;
+    }
+
+
 }

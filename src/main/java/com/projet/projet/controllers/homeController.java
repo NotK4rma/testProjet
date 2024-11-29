@@ -66,13 +66,28 @@ public class homeController implements Initializable {
     @FXML
     private AnchorPane slider;
 
+    @FXML
+    private Label l_nomlib;
+
+
     private SceneMethods editor = new SceneMethods();
+    private static String libName;
 
 
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        if(loginController.getLibName()==null) {
+            libName = signupController.getLibName();
+        }else{
+            libName =loginController.getLibName();
+        }
+
+        l_nomlib.setText(libName);
+
+
         b_close.setOnMouseClicked(e->editor.exit());
         b_logout.setOnMouseClicked(e-> {
             try {
@@ -253,6 +268,10 @@ public class homeController implements Initializable {
         pane.addEventHandler(MouseEvent.MOUSE_ENTERED, event -> hoverIn.play());
         pane.addEventHandler(MouseEvent.MOUSE_EXITED, event -> hoverOut.play());
     }
+
+    /*public static void getLibName(String name){
+        libName = name;
+    }*/
 
 
 }

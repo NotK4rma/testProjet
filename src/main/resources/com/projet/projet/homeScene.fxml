@@ -104,7 +104,7 @@
                               <Image url="@Images/3749904.png" />
                            </image>
                         </ImageView>
-                        <Label text="PlaceHolder:Nom libr" />
+                        <Label fx:id="l_nomlib" text="PlaceHolder:Nom libr" />
                      </children>
                   </VBox>
                </children>

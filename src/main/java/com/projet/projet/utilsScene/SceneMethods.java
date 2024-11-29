@@ -1,5 +1,7 @@
 package com.projet.projet.utilsScene;
 
+import com.projet.projet.controllers.loginController;
+import com.projet.projet.controllers.signupController;
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXMLLoader;
@@ -29,7 +31,7 @@ public class SceneMethods {
         }
     }
 
-    public void alertErrorWindow(){
+    public static void alertErrorWindow(){
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Erreur");
         alert.setHeaderText("Vérifier les champs de texte!");
@@ -47,6 +49,8 @@ public class SceneMethods {
         Stage alertStage = (Stage) alert.getDialogPane().getScene().getWindow();
         alertStage.getIcons().add(new Image(getClass().getResource("/com/projet/projet/Images/logo.png").toExternalForm()));
         if(alert.showAndWait().get()== ButtonType.OK){
+            signupController.revokeLibName();
+            loginController.revokeLibName();
             switchScene(stage, "../loginScene.fxml","../Styles/signInUpStyles.css");
         }
     }
@@ -122,6 +126,37 @@ public class SceneMethods {
         stage.show();
 
     }
+
+
+    public static boolean isInteger(String n){
+        try {
+            Integer.parseInt(n);
+            return true;
+        }
+        catch (NumberFormatException e) {
+            return false;
+        }
+
+    }
+
+
+
+    public static boolean isDouble(String n){
+        try {
+            Double.parseDouble(n);
+            return true;
+        }
+        catch (NumberFormatException e) {
+            return false;
+        }
+
+    }
+
+
+    public static boolean isBoolean(String n){
+        return n.equalsIgnoreCase("true") || n.equalsIgnoreCase("false");
+    }
+
 
 
 

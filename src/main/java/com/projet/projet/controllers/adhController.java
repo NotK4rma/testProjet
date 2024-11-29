@@ -85,12 +85,14 @@ public class adhController implements Initializable {
     @FXML
     private TableView<adherent> t_adh;
 
-
+    @FXML
+    private Label l_nomlib;
 
 
     private final SceneMethods editor = new SceneMethods();
     private final String css= "../Styles/RegularStyles.css";
     private final String css2= "../Styles/newWindowStyles.css";
+    private static String libName;
 
 
 
@@ -104,6 +106,14 @@ public class adhController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        if(loginController.getLibName()==null) {
+            libName = signupController.getLibName();
+        }else{
+            libName =loginController.getLibName();
+        }
+
+        l_nomlib.setText(libName);
 
         c_id.setCellValueFactory(new PropertyValueFactory<>("nbemprunt"));
         c_cin.setCellValueFactory(new PropertyValueFactory<>("cin"));

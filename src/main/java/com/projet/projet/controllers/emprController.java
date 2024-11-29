@@ -81,13 +81,26 @@ public class emprController implements Initializable {
     TextField tf_cin;
     @FXML
     TextField tf_date;
+    @FXML
+    private Label l_nomlib;
+
 
     private SceneMethods editor = new SceneMethods();
     private String[] options = {"ISBN du livre", "DATE d'emprunt", "CIN d'adhérent"};
     private String css2= "../Styles/newWindowStyles.css";
+    private static String libName;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        if(loginController.getLibName()==null) {
+            libName = signupController.getLibName();
+        }else{
+            libName =loginController.getLibName();
+        }
+
+        l_nomlib.setText(libName);
+
 
         choiceRecherche.getItems().addAll(options);
         choiceRecherche.setOnAction(this::findSearchBar);

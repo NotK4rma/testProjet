@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AdherentDAO {
-    public static void saveAdherant(adherent adh){
+    public static int saveAdherant(adherent adh){
         String query = "insert into adherent(cin,nom,prenom) values(?,?,?)";
         try (
             Connection conn = DataBaseConnection.getConnection();
@@ -22,10 +22,18 @@ public class AdherentDAO {
 
             stmt.executeUpdate();
             System.out.println("adherent enregistre");
+            return 0;
 
         }
         catch (SQLException e){
-            e.printStackTrace();
+            if(e.getErrorCode() == 1062){
+                System.out.println("adh existe deja");
+                return -1;
+            }
+            else{
+                e.printStackTrace();
+                return -2;
+            }
         }
 
     }
@@ -82,17 +90,22 @@ public class AdherentDAO {
 
 
 
-    public static void deleteAdherent(int cin){
+    public static int deleteAdherent(int cin){
         String query= "delete from adherent where cin = ?";
         try(
                 Connection conn = DataBaseConnection.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(query)
         ){
             stmt.setInt(1,cin);
-            stmt.executeUpdate();
+            int res = stmt.executeUpdate();
+            if(res > 0){
+                return 1; //il ya update
+            }
+            else return 0; //pas d'upadte => n'existe pas
 
         }catch(SQLException e){
             e.printStackTrace();
+            return -1; //erreur
 
         }
 

@@ -72,8 +72,8 @@ public class ajoutOuvController implements Initializable {
     private TextField tfSupprimerISBN;
 
 
-    private String[] options= {"Livre","Magazine", "Bande déssinée", "Dictionnaire"};
-    private SceneMethods editor = new SceneMethods();
+    final private String[] options= {"Livre","Magazine", "Bande déssinée", "Dictionnaire"};
+
 
 
 
@@ -99,7 +99,7 @@ public class ajoutOuvController implements Initializable {
 
 
     private void ajouterOuvrage(){
-        if(tfauteur.getText().isBlank() || tfisbn.getText().isBlank() || tfprix.getText().isBlank() ||tfseller.getText().isBlank() ||tfnbexemp.getText().isBlank() || choix_type.getValue()==null || !isDouble(tfprix.getText()) || !isBoolean(tfseller.getText()) || !isInteger(tfnbexemp.getText()) ){
+        if(tfauteur.getText().isBlank() || tfisbn.getText().isBlank() || tfprix.getText().isBlank() ||tfseller.getText().isBlank() ||tfnbexemp.getText().isBlank() || choix_type.getValue()==null || !SceneMethods.isDouble(tfprix.getText()) || !SceneMethods.isBoolean(tfseller.getText()) || !SceneMethods.isInteger(tfnbexemp.getText()) || !SceneMethods.isInteger(tfisbn.getText())){
             System.out.println("field not filled");
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erreur");
@@ -137,7 +137,7 @@ public class ajoutOuvController implements Initializable {
                     nbmot = tfnbmot.getText();
                     lang = tflangue.getText();
                     empty = nbmot.isBlank() || lang.isBlank();
-                    valid = isInteger(nbmot);
+                    valid = SceneMethods.isInteger(nbmot);
                     break;
                 default:
                     break;
@@ -156,7 +156,7 @@ public class ajoutOuvController implements Initializable {
             else{
                 String titre=tftitre.getText();
                 String isbn = tfisbn.getText();
-                Boolean bSeller = Boolean.parseBoolean(tfseller.getText());
+                boolean bSeller = Boolean.parseBoolean(tfseller.getText());
                 double prix = Double.parseDouble(tfprix.getText());
                 int nbexp = Integer.parseInt(tfnbexemp.getText());
                 int nbmot_int = Integer.parseInt(nbmot);
@@ -198,8 +198,8 @@ public class ajoutOuvController implements Initializable {
 
     private void supprmerOuvrage(){
         String isbn = tfSupprimerISBN.getText();
-        if(isbn.isBlank()){
-            editor.alertErrorWindow();
+        if(isbn.isBlank() || SceneMethods.isInteger(isbn)){
+            SceneMethods.alertErrorWindow();
         }
         else {
             int res = OuvrageDAO.deleteOuvrage(isbn);
@@ -224,6 +224,9 @@ public class ajoutOuvController implements Initializable {
                     alert3.setHeaderText("Suppression avec succès!");
                     alert3.setContentText("L'ouvrage a été supprimé avec succès");
                     alert3.showAndWait();
+                    break;
+                default:
+                    break;
             }
         }
 
@@ -232,34 +235,6 @@ public class ajoutOuvController implements Initializable {
 
 
 
-    private  boolean isInteger(String n){
-        try {
-            Integer.parseInt(n);
-            return true;
-        }
-        catch (NumberFormatException e) {
-            return false;
-        }
-
-    }
-
-
-
-    private  boolean isDouble(String n){
-        try {
-            Double.parseDouble(n);
-            return true;
-        }
-        catch (NumberFormatException e) {
-            return false;
-        }
-
-    }
-
-
-    private boolean isBoolean(String n){
-        return n.equalsIgnoreCase("true") || n.equalsIgnoreCase("false");
-    }
 
     private void animatePage(Button b){
         TranslateTransition slide = new TranslateTransition();

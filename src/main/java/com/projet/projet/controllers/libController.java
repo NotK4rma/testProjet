@@ -67,13 +67,25 @@ public class libController implements Initializable {
 
     @FXML
     private Label titreScene;
+    @FXML
+    private Label l_nomlib;
+
 
     private SceneMethods editor = new SceneMethods();
+    private static String libName;
+
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        if(loginController.getLibName()==null) {
+            libName = signupController.getLibName();
+        }else{
+            libName =loginController.getLibName();
+        }
+
+        l_nomlib.setText(libName);
 
 
         menuOpen.setOnMouseClicked(e->editor.translationOpen(slider,hide,menuOpen,menuClose));
