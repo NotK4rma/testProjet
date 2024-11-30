@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -50,7 +51,7 @@ public class signupController implements Initializable {
 
         b_signup.setOnMouseClicked(e-> {
             try {
-                editor.switchScene((Stage) b_close.getScene().getWindow(),"../homeScene.fxml", "../Styles/RegularStyles.css");
+                signUp();
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
@@ -71,11 +72,13 @@ public class signupController implements Initializable {
                 int res = LibrarianDAO.saveLibrarian(un,pw);
                 switch (res){
                     case 0:
-                        libName=un;
+                        libName=SceneMethods.capitalizeFirstLetter(un);
                         Alert alert = new Alert(Alert.AlertType.INFORMATION);
                         alert.setTitle("Succès");
                         alert.setHeaderText("Connexion avec succès!");
                         alert.setContentText("Bienvenue, vous serez derige vers le menu home!");
+                        Stage alertStage = (Stage)alert.getDialogPane().getScene().getWindow();
+                        alertStage.getIcons().add(new Image("com/projet/projet/Images/logo.png"));
                         alert.showAndWait();
                                                                                                                                                                 /*FXMLLoader loader = new FXMLLoader(getClass().getResource("../homeScene.fxml"));
                                                                                                                                                                 Scene scene = new Scene(loader.load());
@@ -90,9 +93,11 @@ public class signupController implements Initializable {
                         break;
                     case -1:
                         Alert alert2 = new Alert(Alert.AlertType.ERROR);
-                        alert2.setTitle("Erreur ");
+                        alert2.setTitle("Erreur 1");
                         alert2.setHeaderText("Echec d'ajout du bibliothecaire!");
                         alert2.setContentText("Un y'a un erreur lors de l'ajout du bibliothecaire, cet compte existe deja, essayez de nouveau");
+                        Stage alertStage2 = (Stage)alert2.getDialogPane().getScene().getWindow();
+                        alertStage2.getIcons().add(new Image("com/projet/projet/Images/logo.png"));
                         alert2.showAndWait();
                         mdp.clear();
                         conf_mdp.clear();
@@ -100,9 +105,11 @@ public class signupController implements Initializable {
                         break;
                     case -2:
                         Alert alert3 = new Alert(Alert.AlertType.ERROR);
-                        alert3.setTitle("Erreur ");
+                        alert3.setTitle("Erreur 2");
                         alert3.setHeaderText("Echec d'ajout du bibliothecaire!");
                         alert3.setContentText("Un y'a un erreur lors de verification de l'etat du bibliothecaire,  essayez de nouveau");
+                        Stage alertStage3 = (Stage)alert3.getDialogPane().getScene().getWindow();
+                        alertStage3.getIcons().add(new Image("com/projet/projet/Images/logo.png"));
                         alert3.showAndWait();
                         mdp.clear();
                         conf_mdp.clear();
@@ -119,6 +126,8 @@ public class signupController implements Initializable {
                 alert.setTitle("Erreur");
                 alert.setHeaderText("Vérifier Les mots de passe!");
                 alert.setContentText("Prière de vérifier que les deux mot de passe entré sont identique.");
+                Stage alertStage = (Stage)alert.getDialogPane().getScene().getWindow();
+                alertStage.getIcons().add(new Image("com/projet/projet/Images/logo.png"));
                 alert.showAndWait();
                 mdp.clear();
                 conf_mdp.clear();

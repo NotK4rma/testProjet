@@ -54,7 +54,7 @@
 }
 
 #background{
-    -fx-background-color : #EDF2F7;
+    -fx-background-color : #EDF2F7;  /*Blue feta7 barcha prsq gris*/
 
 }
 
@@ -87,7 +87,7 @@
 
 }
 #menubarup{
-    -fx-background-color:  #1786b4;
+    -fx-background-color:  #1786b4; /*main color bleu 8ame9*/
 }
 
 #titreScene{
@@ -109,7 +109,7 @@
 }
 
 #b_ajout:hover,#b_remove:hover,#b_tous:hover {
-    -fx-background-color:  #3a4b5d;          /* try #126e91 instead too*/
+    -fx-background-color:  #3a4b5d;          /* gris secondary color , try #126e91 instead too its even deeper blue*/
     -fx-text-fill:  white;
     -fx-border-color: white;
 
@@ -145,6 +145,17 @@
     -fx-background-color:  #1786b4;
     -fx-background-radius:  10px;
     -fx-border-radius:  10px;
+
+
+}
+
+
+#l_nomlib{
+    -fx-font-family : Merriweather;
+    -fx-font-size: 30px;
+    -fx-text-fill: #003366;
+
+
 
 
 }

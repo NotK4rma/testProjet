@@ -68,7 +68,14 @@ public class homeController implements Initializable {
 
     @FXML
     private Label l_nomlib;
+    @FXML
+    private Label l_infoLib;
 
+    @FXML
+    private Label l_infobooks;
+
+    @FXML
+    private Label l_inforeader;
 
     private SceneMethods editor = new SceneMethods();
     private static String libName;
@@ -86,6 +93,8 @@ public class homeController implements Initializable {
         }
 
         l_nomlib.setText(libName);
+
+        
 
 
         b_close.setOnMouseClicked(e->editor.exit());

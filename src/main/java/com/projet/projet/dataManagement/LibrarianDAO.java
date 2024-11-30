@@ -12,7 +12,7 @@ import java.util.List;
 public class LibrarianDAO {
 
     public static int saveLibrarian(String un, String pw){
-        String query = "insert ibto bibliothecaire(username,password) values (?,?)";
+        String query = "insert into bibliothecaire(username,password) values (?,?)";
         try(
                 Connection conn =DataBaseConnection.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(query)
@@ -21,7 +21,7 @@ public class LibrarianDAO {
             stmt.setString(1,un);
             stmt.setString(2,pw);
 
-            stmt.executeQuery();
+            stmt.executeUpdate();
             return 0;
 
         }
@@ -40,7 +40,7 @@ public class LibrarianDAO {
 
 
     public static boolean getLibr(String un, String pw){
-        String query = "select count(*) as count from bibliothecaire where username = ? and password = ?";
+        String query = "select count(*) as count from bibliothecaire where username = ? and BINARY password = ?";
         int res=0;
         try(
                 Connection conn = DataBaseConnection.getConnection();

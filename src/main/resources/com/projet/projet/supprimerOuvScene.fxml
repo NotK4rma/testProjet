@@ -7,9 +7,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projet.projet.controllers.ajoutOuvController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projet.projet.controllers.SupprimerOuvController">
    <children>
-      <VBox alignment="CENTER" layoutX="61.0" layoutY="49.0" prefHeight="302.0" prefWidth="479.0" AnchorPane.topAnchor="49.0">
+      <VBox alignment="CENTER" layoutX="61.0" layoutY="49.0" prefHeight="302.0" prefWidth="479.0" spacing="10.0" AnchorPane.topAnchor="49.0">
          <children>
             <VBox prefHeight="63.0" prefWidth="479.0" spacing="5.0" translateY="-30.0">
                <children>
@@ -17,13 +17,13 @@
                      <VBox.margin>
                         <Insets left="10.0" />
                      </VBox.margin></Label>
-                  <TextField fx:id="tfSupprimerISBN" />
+                  <TextField fx:id="tfSupprimerISBN" prefHeight="35.0" prefWidth="243.0" />
                </children>
                <padding>
                   <Insets left="118.0" right="118.0" />
                </padding>
             </VBox>
-            <Button fx:id="b_supprimer" mnemonicParsing="false" prefHeight="40.0" prefWidth="147.0" text="Supprimer ouvrage" translateY="-30.0" />
+            <Button fx:id="b_supprimer" mnemonicParsing="false" prefHeight="40.0" prefWidth="183.0" text="Supprimer ouvrage" translateY="-30.0" />
          </children>
          <padding>
             <Insets top="40.0" />

@@ -5,6 +5,7 @@ import com.projet.projet.utilsScene.SceneMethods;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -12,6 +13,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import static com.projet.projet.utilsScene.SceneMethods.capitalizeFirstLetter;
 
 public class loginController implements Initializable {
 
@@ -60,7 +63,7 @@ public class loginController implements Initializable {
 
         b_login.setOnMouseClicked(e-> {
             try {
-                editor.switchScene((Stage)b_close.getScene().getWindow(),"../homeScene.fxml","../Styles/RegularStyles.css");
+                logIn();
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
@@ -82,17 +85,21 @@ public class loginController implements Initializable {
                 alert.setTitle("Erreur ");
                 alert.setHeaderText("Echec de connexion!");
                 alert.setContentText("Un y'avait une erreur lors de la connexion ou les information entrées sont erronées , essayez de nouveau");
+                Stage alertStage = (Stage)alert.getDialogPane().getScene().getWindow();
+                alertStage.getIcons().add(new Image("com/projet/projet/Images/logo.png"));
                 alert.showAndWait();
                 mdp.clear();
                 username.clear();
 
             }
             else{
-                libName=un;
+                libName=SceneMethods.capitalizeFirstLetter(un);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Succès");
-                alert.setHeaderText("Ajout avec succès!");
-                alert.setContentText("L'ouvrage a été ajouté avec succès");
+                alert.setHeaderText("Connexion réussie!");
+                alert.setContentText("Connexion établit avec succeès! vous serez diriger au Home Screen.");
+                Stage alertStage = (Stage)alert.getDialogPane().getScene().getWindow();
+                alertStage.getIcons().add(new Image("com/projet/projet/Images/logo.png"));
                 alert.showAndWait();
                 editor.switchScene((Stage) b_close.getScene().getWindow(),"../homeScene.fxml", "../Styles/RegularStyles.css");
 

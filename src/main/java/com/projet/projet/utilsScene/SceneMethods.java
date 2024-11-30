@@ -36,6 +36,8 @@ public class SceneMethods {
         alert.setTitle("Erreur");
         alert.setHeaderText("Vérifier les champs de texte!");
         alert.setContentText("Prière de remplir tous les champs disponibles.");
+        Stage alertStage = (Stage)alert.getDialogPane().getScene().getWindow();
+        alertStage.getIcons().add(new Image("com/projet/projet/Images/logo.png"));
         alert.showAndWait();
     }
 
@@ -156,6 +158,18 @@ public class SceneMethods {
     public static boolean isBoolean(String n){
         return n.equalsIgnoreCase("true") || n.equalsIgnoreCase("false");
     }
+
+
+
+
+    public static String capitalizeFirstLetter(String text) {
+        if (text == null || text.isEmpty()) {
+            return text;
+        }
+        return text.substring(0, 1).toUpperCase() + text.substring(1);
+    }
+
+
 
 
 

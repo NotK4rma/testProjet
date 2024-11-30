@@ -8,6 +8,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -25,11 +27,7 @@ public class AjoutSuppAdherantController implements Initializable {
     @FXML
     private TextField tfprenom;
 
-    @FXML
-    private TextField tfSupprimerCin;
 
-    @FXML
-    private Button b_supprimer;
 
 
 
@@ -38,7 +36,7 @@ public class AjoutSuppAdherantController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         b_ajout.setOnMouseClicked(e->ajouterAdherent());
-        b_supprimer.setOnMouseClicked(e->supprimerAdherent());
+
 
 
 
@@ -60,6 +58,8 @@ public class AjoutSuppAdherantController implements Initializable {
                         alert.setTitle("Succès");
                         alert.setHeaderText("Ajout avec succès!");
                         alert.setContentText("L'ouvrage a été ajouté avec succès");
+                        Stage alertStage = (Stage)alert.getDialogPane().getScene().getWindow();
+                        alertStage.getIcons().add(new Image("com/projet/projet/Images/logo.png"));
                         alert.showAndWait();
                         break;
                     case -1:
@@ -67,6 +67,8 @@ public class AjoutSuppAdherantController implements Initializable {
                         alert2.setTitle("Erreur ");
                         alert2.setHeaderText("Echec d'ajout de l'adherent!");
                         alert2.setContentText("Un y'a un erreur lors de l'ajout de l'adherent, cet cin existe deja, essayez de nouveau");
+                        Stage alertStage2 = (Stage)alert2.getDialogPane().getScene().getWindow();
+                        alertStage2.getIcons().add(new Image("com/projet/projet/Images/logo.png"));
                         alert2.showAndWait();
                         break;
                     case -2:
@@ -74,6 +76,8 @@ public class AjoutSuppAdherantController implements Initializable {
                         alert3.setTitle("Erreur ");
                         alert3.setHeaderText("Echec d'ajout de l'adherent!");
                         alert3.setContentText("Un y'a un erreur lors de verification de l'etat de l'adherent,  essayez de nouveau");
+                        Stage alertStage3 = (Stage)alert3.getDialogPane().getScene().getWindow();
+                        alertStage3.getIcons().add(new Image("com/projet/projet/Images/logo.png"));
                         alert3.showAndWait();
                         break;
                     default:
@@ -87,43 +91,7 @@ public class AjoutSuppAdherantController implements Initializable {
     }
 
 
-    private void supprimerAdherent(){
-        String cin = tfSupprimerCin.getText();
-        if(cin.isBlank() || SceneMethods.isInteger(cin)){
-            SceneMethods.alertErrorWindow();
-        }
-        else{
-            int res = AdherentDAO.deleteAdherent(Integer.parseInt(cin));
-            switch(res){
-                case 0:
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("introuvable");
-                    alert.setHeaderText("Echec de suppression de l'aherent!");
-                    alert.setContentText("L'adherent n'existe pas");
-                    alert.showAndWait();
-                    break;
-                case -1:
-                    Alert alert2 = new Alert(Alert.AlertType.ERROR);
-                    alert2.setTitle("Erreur ");
-                    alert2.setHeaderText("Echec de suppression de l'adherent!");
-                    alert2.setContentText("Un y'a un erreur inconnu, impossible de supprimer l'adherent, essayez de nouveau");
-                    alert2.showAndWait();
-                    break;
-                case 1:
-                    Alert alert3 = new Alert(Alert.AlertType.INFORMATION);
-                    alert3.setTitle("Succès");
-                    alert3.setHeaderText("Suppression avec succès!");
-                    alert3.setContentText("L'adherent a été supprimé avec succès");
-                    alert3.showAndWait();
-                    break;
-                default:
-                    break;
-            }
 
-        }
-
-
-    }
 
 
 

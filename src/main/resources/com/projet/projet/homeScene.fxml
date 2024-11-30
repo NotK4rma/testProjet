@@ -33,7 +33,7 @@
                                     <Image url="@Images/book.png" />
                                  </image>
                               </ImageView>
-                              <Label layoutY="64.0" prefHeight="80.0" prefWidth="273.0" text="Info Sur ouvrage from db">
+                              <Label fx:id="l_infobooks" layoutY="64.0" prefHeight="80.0" prefWidth="273.0" text="Info Sur ouvrage from db">
                                  <padding>
                                     <Insets left="20.0" />
                                  </padding>
@@ -52,7 +52,7 @@
                                     <Image url="@Images/reader.png" />
                                  </image>
                               </ImageView>
-                              <Label layoutY="64.0" prefHeight="80.0" prefWidth="273.0" text="Info Sur adhérent from db">
+                              <Label fx:id="l_inforeader" layoutY="64.0" prefHeight="80.0" prefWidth="273.0" text="Info Sur adhérent from db">
                                  <padding>
                                     <Insets left="20.0" />
                                  </padding>
@@ -76,7 +76,7 @@
                               <Image url="@Images/librarian%20logo.png" />
                            </image>
                         </ImageView>
-                        <Label layoutY="64.0" prefHeight="80.0" prefWidth="273.0" text="Info Sur ouvrage from db">
+                        <Label fx:id="l_infoLib" layoutY="64.0" prefHeight="80.0" prefWidth="273.0" text="Info Sur ouvrage from db">
                            <padding>
                               <Insets left="20.0" />
                            </padding>
@@ -97,14 +97,14 @@
          <children>
             <Pane layoutX="27.0" layoutY="23.0" prefHeight="216.0" prefWidth="226.0">
                <children>
-                  <VBox alignment="CENTER" prefHeight="216.0" prefWidth="234.0" spacing="20.0">
+                  <VBox alignment="CENTER" prefHeight="216.0" prefWidth="234.0" spacing="10.0">
                      <children>
-                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" translateX="5.0">
                            <image>
                               <Image url="@Images/3749904.png" />
                            </image>
                         </ImageView>
-                        <Label fx:id="l_nomlib" text="PlaceHolder:Nom libr" />
+                        <Label fx:id="l_nomlib" alignment="TOP_CENTER" prefHeight="17.0" prefWidth="206.0" text="PlaceHolder:Nom libr" textAlignment="CENTER" translateX="-15.0" />
                      </children>
                   </VBox>
                </children>

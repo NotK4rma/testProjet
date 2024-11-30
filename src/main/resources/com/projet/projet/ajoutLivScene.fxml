@@ -176,7 +176,7 @@
                                     <Insets left="10.0" />
                                  </padding>
                               </Label>
-                              <DatePicker fx:id="datepub" prefHeight="25.0" prefWidth="249.0" />
+                              <DatePicker fx:id="datepub" prefHeight="37.0" prefWidth="229.0" />
                            </children>
                         </VBox>
                      </children>

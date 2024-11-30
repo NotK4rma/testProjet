@@ -2,17 +2,14 @@ package com.projet.projet.dataManagement;
 
 import com.projet.projet.ouvrage.*;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class OuvrageDAO {
     public static int saveOuvrage(String titre, String isbn, double prix, boolean seller, int nbexmplr, String auteur, String genre, String illust, LocalDate pub, String lang, int mot){
-        String query = "insert into adherent(isbn,titre,prix,bestSeller,nbExemplaire,auteur,genre,illustrateur,datePublication,langue,nbMot) values(?,?,?,?,?,?,?,?,?,?,?)";
+        String query = "insert into ouvrage(isbn,titre,prix,bestSeller,nbExemplaire,auteur,genre,illustrateur,datePublication,langue,nbMot) values(?,?,?,?,?,?,?,?,?,?,?)";
         try (
                 Connection conn = DataBaseConnection.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(query)
@@ -25,18 +22,36 @@ public class OuvrageDAO {
             if(!(auteur.isBlank())){
                 stmt.setString(6,auteur);
                 stmt.setString(7,genre);
+                stmt.setNull(8, Types.VARCHAR);
+                stmt.setNull(9, Types.DATE);
+                stmt.setNull(10, Types.VARCHAR);
+                stmt.setNull(11, Types.INTEGER);
                 System.out.println("livre");
             }
             else if(!(illust.isBlank())){
+                stmt.setNull(6, Types.VARCHAR);
+                stmt.setNull(7, Types.VARCHAR);
                 stmt.setString(8,illust);
+                stmt.setNull(9, Types.DATE);
+                stmt.setNull(10, Types.VARCHAR);
+                stmt.setNull(11, Types.INTEGER);
                 System.out.println("bd");
 
             } else if (pub!=null) {
+                stmt.setNull(6, Types.VARCHAR);
+                stmt.setNull(7, Types.VARCHAR);
+                stmt.setNull(8, Types.VARCHAR);
                 stmt.setDate(9,java.sql.Date.valueOf(pub));
+                stmt.setNull(10, Types.VARCHAR);
+                stmt.setNull(11, Types.INTEGER);
                 System.out.println("magazine");
 
             }
             else{
+                stmt.setNull(6, Types.VARCHAR);
+                stmt.setNull(7, Types.VARCHAR);
+                stmt.setNull(8, Types.VARCHAR);
+                stmt.setNull(9, Types.DATE);
                 stmt.setString(10,lang);
                 stmt.setInt(11,mot);
                 System.out.println("dictionnarie");
