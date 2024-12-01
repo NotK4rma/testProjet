@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projet.projet.controllers.AjoutSuppAdherantController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projet.projet.controllers.AjoutAdherantController">
    <children>
       <VBox alignment="CENTER" layoutX="61.0" layoutY="49.0" prefHeight="302.0" prefWidth="479.0" AnchorPane.topAnchor="49.0">
          <children>
@@ -21,7 +21,7 @@
                               <Insets left="10.0" />
                            </padding>
                         </Label>
-                        <TextField fx:id="tfnom" />
+                        <TextField fx:id="tfnom" prefHeight="35.0" />
                      </children>
                   </VBox>
                   <VBox layoutX="20.0" layoutY="10.0" prefHeight="100.0" prefWidth="229.0" spacing="5.0">
@@ -31,7 +31,7 @@
                               <Insets left="10.0" />
                            </padding>
                         </Label>
-                        <TextField fx:id="tfprenom" />
+                        <TextField fx:id="tfprenom" prefHeight="35.0" />
                      </children>
                   </VBox>
                </children>
@@ -46,7 +46,7 @@
                         <Insets left="10.0" />
                      </padding>
                   </Label>
-                  <TextField fx:id="tfcin" />
+                  <TextField fx:id="tfcin" prefHeight="35.0" />
                </children>
                <padding>
                   <Insets left="118.0" right="118.0" />

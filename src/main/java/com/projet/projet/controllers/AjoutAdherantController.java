@@ -1,6 +1,6 @@
 package com.projet.projet.controllers;
 
-import com.projet.projet.adherant.adherent;
+import com.projet.projet.personne.adherent;
 import com.projet.projet.dataManagement.AdherentDAO;
 import com.projet.projet.utilsScene.SceneMethods;
 import javafx.fxml.FXML;
@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class AjoutSuppAdherantController implements Initializable {
+public class AjoutAdherantController implements Initializable {
     @FXML
     private Button b_ajout;
 
@@ -69,7 +69,7 @@ public class AjoutSuppAdherantController implements Initializable {
                         Alert alert2 = new Alert(Alert.AlertType.ERROR);
                         alert2.setTitle("Erreur ");
                         alert2.setHeaderText("Echec d'ajout de l'adherent!");
-                        alert2.setContentText("Un y'a un erreur lors de l'ajout de l'adherent, cet cin existe deja, essayez de nouveau");
+                        alert2.setContentText("Un y'a un erreur lors de l'ajout de l'adherent, cet cin existe deja, essayez de nouveau!");
                         Stage alertStage2 = (Stage)alert2.getDialogPane().getScene().getWindow();
                         alertStage2.getIcons().add(new Image("com/projet/projet/Images/logo.png"));
                         alert2.showAndWait();
@@ -78,7 +78,7 @@ public class AjoutSuppAdherantController implements Initializable {
                         Alert alert3 = new Alert(Alert.AlertType.ERROR);
                         alert3.setTitle("Erreur ");
                         alert3.setHeaderText("Echec d'ajout de l'adherent!");
-                        alert3.setContentText("Un y'a un erreur lors de verification de l'etat de l'adherent,  essayez de nouveau");
+                        alert3.setContentText("Un y'a un erreur lors de verification de l'etat de l'adherent,  essayez de nouveau!");
                         Stage alertStage3 = (Stage)alert3.getDialogPane().getScene().getWindow();
                         alertStage3.getIcons().add(new Image("com/projet/projet/Images/logo.png"));
                         alert3.showAndWait();

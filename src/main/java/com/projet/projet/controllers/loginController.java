@@ -84,7 +84,7 @@ public class loginController implements Initializable {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Erreur ");
                 alert.setHeaderText("Echec de connexion!");
-                alert.setContentText("Un y'avait une erreur lors de la connexion ou les information entrées sont erronées , essayez de nouveau");
+                alert.setContentText("Un y'avait une erreur lors de la connexion ou les information entrées sont erronées , essayez de nouveau!");
                 Stage alertStage = (Stage)alert.getDialogPane().getScene().getWindow();
                 alertStage.getIcons().add(new Image("com/projet/projet/Images/logo.png"));
                 alert.showAndWait();

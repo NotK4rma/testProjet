@@ -48,7 +48,7 @@ public class SupprimerOuvController implements Initializable {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("introuvable");
                     alert.setHeaderText("Echec de suppression de l'ouvrage!");
-                    alert.setContentText("L'ouvrage n'existe pas");
+                    alert.setContentText("L'ouvrage n'existe pas!");
                     Stage alertStage = (Stage)alert.getDialogPane().getScene().getWindow();
                     alertStage.getIcons().add(new Image("com/projet/projet/Images/logo.png"));
                     alert.showAndWait();
@@ -57,7 +57,7 @@ public class SupprimerOuvController implements Initializable {
                     Alert alert2 = new Alert(Alert.AlertType.ERROR);
                     alert2.setTitle("Erreur ");
                     alert2.setHeaderText("Echec de suppression de l'ouvrage!");
-                    alert2.setContentText("Un y'a un erreur inconnu, impossible de supprimer l'ouvrage, essayez de nouveau");
+                    alert2.setContentText("Un y'a un erreur inconnu, impossible de supprimer l'ouvrage, essayez de nouveau!");
                     Stage alertStage2 = (Stage)alert2.getDialogPane().getScene().getWindow();
                     alertStage2.getIcons().add(new Image("com/projet/projet/Images/logo.png"));
                     alert2.showAndWait();
@@ -66,7 +66,7 @@ public class SupprimerOuvController implements Initializable {
                     Alert alert3 = new Alert(Alert.AlertType.INFORMATION);
                     alert3.setTitle("Succès");
                     alert3.setHeaderText("Suppression avec succès!");
-                    alert3.setContentText("L'ouvrage a été supprimé avec succès");
+                    alert3.setContentText("L'ouvrage a été supprimé avec succès!");
                     Stage alertStage3 = (Stage)alert3.getDialogPane().getScene().getWindow();
                     alertStage3.getIcons().add(new Image("com/projet/projet/Images/logo.png"));
                     alert3.showAndWait();

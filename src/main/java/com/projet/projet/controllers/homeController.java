@@ -1,5 +1,6 @@
 package com.projet.projet.controllers;
 
+import com.projet.projet.dataManagement.MiscStatsDAO;
 import com.projet.projet.utilsScene.SceneMethods;
 import javafx.animation.*;
 import javafx.application.Platform;
@@ -13,6 +14,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -68,14 +73,13 @@ public class homeController implements Initializable {
 
     @FXML
     private Label l_nomlib;
-    @FXML
-    private Label l_infoLib;
 
     @FXML
-    private Label l_infobooks;
-
+    private TextFlow t_book;
     @FXML
-    private Label l_inforeader;
+    private TextFlow t_adh;
+    @FXML
+    private TextFlow t_lib;
 
     private SceneMethods editor = new SceneMethods();
     private static String libName;
@@ -94,7 +98,44 @@ public class homeController implements Initializable {
         l_nomlib.setWrapText(true);
         l_nomlib.setText("Bienvenue, "+libName+"!");
 
-        
+
+
+
+        if(MiscStatsDAO.getNbAdherent()>=0){
+            Text p1 = new Text("Actuellement, Il y'a ");
+            Text p2 = new Text(" adhérents abonnées à la bibliotheques avec X emprunt total.");
+            p1.setFont(Font.font("Roboto", FontWeight.NORMAL,20));
+            p2.setFont(Font.font("Roboto", FontWeight.NORMAL,20));
+            Text boldStat = new Text(String.valueOf(MiscStatsDAO.getNbAdherent()));
+            boldStat.setFont(Font.font("Roboto", FontWeight.BOLD,22));
+            t_adh.getChildren().addAll(p1, boldStat , p2);
+        }
+
+
+        if(MiscStatsDAO.getNbOuvrageDistinct()>=0){
+            Text p1 = new Text("Actuellement, Il y'a ");
+            Text p2 = new Text(" ouvrage disctinct dans la bibliotheques avec ");
+            Text p3 = new Text(" ouvrage totales.");
+            p1.setFont(Font.font("Roboto", FontWeight.NORMAL,20));
+            p2.setFont(Font.font("Roboto", FontWeight.NORMAL,20));
+            p3.setFont(Font.font("Roboto", FontWeight.NORMAL,20));
+            Text boldStat = new Text(String.valueOf(MiscStatsDAO.getNbOuvrageDistinct()));
+            boldStat.setFont(Font.font("Roboto", FontWeight.BOLD,22));
+            Text boldStat2 = new Text(String.valueOf(MiscStatsDAO.getNbOuvrageTotal()));
+            boldStat2.setFont(Font.font("Roboto", FontWeight.BOLD,22));
+            t_book.getChildren().addAll(p1, boldStat , p2, boldStat2, p3);
+        }
+
+
+        if(MiscStatsDAO.getNbBibliothecaire()>=0){
+            Text p1 = new Text("Actuellement, Il y'a ");
+            Text p2 = new Text(" bibliothecaire travaillant dans la bibliotheques.");
+            p1.setFont(Font.font("Roboto", FontWeight.NORMAL,20));
+            p2.setFont(Font.font("Roboto", FontWeight.NORMAL,20));
+            Text boldStat = new Text(String.valueOf(MiscStatsDAO.getNbBibliothecaire()));
+            boldStat.setFont(Font.font("Roboto", FontWeight.BOLD,22));
+            t_lib.getChildren().addAll(p1, boldStat , p2);
+        }
 
 
         b_close.setOnMouseClicked(e->editor.exit());

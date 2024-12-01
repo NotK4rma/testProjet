@@ -53,7 +53,7 @@ public class SupprimerAdhController implements Initializable {
                     Alert alert2 = new Alert(Alert.AlertType.ERROR);
                     alert2.setTitle("Erreur ");
                     alert2.setHeaderText("Echec de suppression de l'adherent!");
-                    alert2.setContentText("Un y'a un erreur inconnu, impossible de supprimer l'adherent, essayez de nouveau");
+                    alert2.setContentText("Un y'a un erreur inconnu, impossible de supprimer l'adherent, essayez de nouveau!");
                     Stage alertStage2 = (Stage)alert2.getDialogPane().getScene().getWindow();
                     alertStage2.getIcons().add(new Image("com/projet/projet/Images/logo.png"));
                     alert2.showAndWait();

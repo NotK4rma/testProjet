@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 public class MiscStatsDAO {
 
-    public int getNbOuvrage(){
+    public static int getNbOuvrageDistinct(){
         String query = "select count(*) as count from ouvrage";
         try(
                 Connection conn = DataBaseConnection.getConnection();
@@ -30,7 +30,7 @@ public class MiscStatsDAO {
 
 
 
-    public int getNbAdherent(){
+    public static int getNbAdherent(){
         String query = "select count(*) as count from adherent";
         try(
                 Connection conn = DataBaseConnection.getConnection();
@@ -53,7 +53,7 @@ public class MiscStatsDAO {
 
 
 
-    public int getNbBibliothecaire(){
+    public static int getNbBibliothecaire(){
         String query = "select count(*) as count from bibliothecaire";
         try(
                 Connection conn = DataBaseConnection.getConnection();
@@ -72,6 +72,29 @@ public class MiscStatsDAO {
         }
 
     }
+
+    public static int getNbOuvrageTotal(){
+        String query = "select sum(nbExemplaire) as sum from ouvrage";
+        try(
+                Connection conn = DataBaseConnection.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(query);
+                ResultSet rs = stmt.executeQuery()
+        ){
+            if (rs.next()){
+                return rs.getInt("sum");
+            }
+
+            return 0;
+
+        }catch(SQLException e){
+            e.printStackTrace();
+            return -1;
+        }
+
+    }
+
+
+
 
 
 }

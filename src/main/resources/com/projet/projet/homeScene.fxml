@@ -12,6 +12,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.TextFlow?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="714.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projet.projet.controllers.homeController">
    <children>
@@ -33,11 +34,11 @@
                                     <Image url="@Images/book.png" />
                                  </image>
                               </ImageView>
-                              <Label fx:id="l_infobooks" layoutY="64.0" prefHeight="80.0" prefWidth="273.0" text="Info Sur ouvrage from db">
+                              <TextFlow fx:id="t_book" prefHeight="265.0" prefWidth="273.0">
                                  <padding>
-                                    <Insets left="20.0" />
+                                    <Insets left="15.0" right="10.0" top="60.0" />
                                  </padding>
-                              </Label>
+                              </TextFlow>
                            </children>
                         </Pane>
                         <Pane fx:id="adhinfo" layoutX="10.0" layoutY="10.0" prefHeight="265.0" prefWidth="363.0" style="-fx-background-color: #1786b4;">
@@ -52,11 +53,11 @@
                                     <Image url="@Images/reader.png" />
                                  </image>
                               </ImageView>
-                              <Label fx:id="l_inforeader" layoutY="64.0" prefHeight="80.0" prefWidth="273.0" text="Info Sur adhérent from db">
+                              <TextFlow fx:id="t_adh" prefHeight="265.0" prefWidth="273.0">
                                  <padding>
-                                    <Insets left="20.0" />
+                                    <Insets left="15.0" right="10.0" top="60.0" />
                                  </padding>
-                              </Label>
+                              </TextFlow>
                            </children>
                         </Pane>
                      </children>
@@ -76,11 +77,11 @@
                               <Image url="@Images/librarian%20logo.png" />
                            </image>
                         </ImageView>
-                        <Label fx:id="l_infoLib" layoutY="64.0" prefHeight="80.0" prefWidth="273.0" text="Info Sur ouvrage from db">
+                        <TextFlow fx:id="t_lib" prefHeight="265.0" prefWidth="273.0">
                            <padding>
-                              <Insets left="20.0" />
+                              <Insets left="15.0" right="10.0" top="60.0" />
                            </padding>
-                        </Label>
+                        </TextFlow>
                      </children>
                      <VBox.margin>
                         <Insets left="444.0" right="444.0" />

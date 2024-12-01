@@ -1,10 +1,14 @@
 package com.projet.projet.controllers;
 
+import com.projet.projet.dataManagement.LibrarianDAO;
 import com.projet.projet.utilsScene.SceneMethods;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -13,6 +17,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class libController implements Initializable {
@@ -71,6 +76,17 @@ public class libController implements Initializable {
     private Label l_nomlib;
 
 
+    @FXML
+    private TableView<String> t_libr;
+
+
+    @FXML
+    private TableColumn<String, String> c_username;
+
+    @FXML
+    private ImageView refreshTables;
+
+
     private SceneMethods editor = new SceneMethods();
     private static String libName;
 
@@ -85,9 +101,55 @@ public class libController implements Initializable {
             libName =loginController.getLibName();
         }
 
+        Tooltip tooltip = new Tooltip("Effacer le contenu du tableau");
+        Tooltip.install(refreshTables, tooltip);
+
+
+        refreshTables.setOnMouseClicked(e->t_libr.getItems().clear());
+
         l_nomlib.setWrapText(true);
         l_nomlib.setText("Bienvenue, "+libName+"!");
 
+        b_tous.setOnMouseClicked(e->afficherBibliothecaire());
+
+        b_ajout.setOnMouseClicked(e->{
+
+            try {
+                Alert alert =new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Validation");
+                alert.setHeaderText("Ajouter Bibliothecaire ?");
+                alert.setContentText("Le compte créer aura accès à la base de donnée!\nVoulez vous l'ajouter?");
+                Stage alertStage = (Stage)alert.getDialogPane().getScene().getWindow();
+                alertStage.getIcons().add(new Image("com/projet/projet/Images/logo.png"));
+                if (alert.showAndWait().get()==ButtonType.OK) {
+                    editor.switchMiniStage("../ajoutBibScene.fxml","../Styles/newWindowStyles.css");
+                }
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+
+        b_remove.setOnMouseClicked(e->{
+
+            try {
+                Alert alert =new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Validation");
+                alert.setHeaderText("Supprimer Bibliothecaire ?");
+                alert.setContentText("Ce compte n'aura plus d'accès à la base de donnée!\nVoulez vous le supprimer?");
+                Stage alertStage = (Stage)alert.getDialogPane().getScene().getWindow();
+                alertStage.getIcons().add(new Image("com/projet/projet/Images/logo.png"));
+                if (alert.showAndWait().get()==ButtonType.OK) {
+                    editor.switchMiniStage("../SupprimerBibScene.fxml","../Styles/newWindowStyles.css");
+                }
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+
+
+        c_username.setCellValueFactory(data->
+                new SimpleStringProperty(SceneMethods.capitalizeFirstLetter(data.getValue()))
+        );
 
         menuOpen.setOnMouseClicked(e->editor.translationOpen(slider,hide,menuOpen,menuClose));
         menuClose.setOnMouseClicked(e->editor.translationClose(slider,hide,menuOpen,menuClose));
@@ -139,4 +201,15 @@ public class libController implements Initializable {
 
 
     }
+
+
+
+    private void afficherBibliothecaire(){
+        List<String> Lbib = LibrarianDAO.afficherLibrs();
+        ObservableList<String> observableLbib = FXCollections.observableArrayList(Lbib);
+        t_libr.setItems(observableLbib);
+
+    }
+
+
 }

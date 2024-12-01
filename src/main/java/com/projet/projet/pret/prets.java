@@ -3,12 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.projet.projet.pret;
-import com.projet.projet.adherant.adherent;
-import com.projet.projet.ouvrage.livre;
-import com.projet.projet.ouvrage.ouvrage;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 public class prets {
     private int numPre;

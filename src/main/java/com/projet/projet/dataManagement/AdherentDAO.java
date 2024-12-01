@@ -1,6 +1,6 @@
 package com.projet.projet.dataManagement;
 
-import com.projet.projet.adherant.adherent;
+import com.projet.projet.personne.adherent;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

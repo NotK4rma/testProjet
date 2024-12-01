@@ -25,6 +25,9 @@
             -fx-font-size : 20px;
             -fx-text-fill: black;
 }
+#hyper{
+    -fx-text-fill : #1786b4;
+}
 
 .button{
     -fx-border-radius: 15px;

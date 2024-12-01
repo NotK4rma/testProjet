@@ -3,56 +3,35 @@ package com.projet.projet.controllers;
 import com.projet.projet.dataManagement.LibrarianDAO;
 import com.projet.projet.utilsScene.SceneMethods;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class signupController implements Initializable {
 
+public class AjoutBibController implements Initializable {
+    @FXML
+    private Button b_ajout;
 
     @FXML
-    private ImageView b_close;
+    private TextField tfconfirm;
 
     @FXML
-    private Button b_signup;
+    private TextField tfmdp;
 
     @FXML
-    private PasswordField conf_mdp;
-
-    @FXML
-    private AnchorPane container;
-
-    @FXML
-    private PasswordField mdp;
-
-    @FXML
-    private Label title;
-
-    @FXML
-    private TextField username;
-
-    @FXML
-    private ImageView returnLogin;
-
-    private SceneMethods editor = new SceneMethods();
-    private static String libName=null;
+    private TextField tfuser;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        b_close.setOnMouseClicked(e->editor.exit());
-
-        b_signup.setOnMouseClicked(e-> {
+        b_ajout.setOnMouseClicked(e-> {
             try {
                 signUp();
             } catch (IOException ex) {
@@ -60,21 +39,15 @@ public class signupController implements Initializable {
             }
         });
 
-        returnLogin.setOnMouseClicked(e->{
-            try {
-                editor.switchScene((Stage)b_close.getScene().getWindow(),"../loginScene.fxml","../Styles/signInUpStyles.css");
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
-        });
 
 
     }
 
+
     private void signUp() throws IOException {
-        String un = username.getText().trim();
-        String pw = mdp.getText();
-        String c_pw = conf_mdp.getText();
+        String un = tfuser.getText().trim();
+        String pw = tfmdp.getText();
+        String c_pw = tfconfirm.getText();
         if(un.isBlank() || pw.isBlank() || c_pw.isBlank()){
             SceneMethods.alertErrorWindow();
         }
@@ -83,7 +56,6 @@ public class signupController implements Initializable {
                 int res = LibrarianDAO.saveLibrarian(un,pw);
                 switch (res){
                     case 0:
-                        libName=SceneMethods.capitalizeFirstLetter(un);
                         Alert alert = new Alert(Alert.AlertType.INFORMATION);
                         alert.setTitle("Succès");
                         alert.setHeaderText("Connexion avec succès!");
@@ -91,14 +63,10 @@ public class signupController implements Initializable {
                         Stage alertStage = (Stage)alert.getDialogPane().getScene().getWindow();
                         alertStage.getIcons().add(new Image("com/projet/projet/Images/logo.png"));
                         alert.showAndWait();
-                                                                                                                                                                /*FXMLLoader loader = new FXMLLoader(getClass().getResource("../homeScene.fxml"));
-                                                                                                                                                                Scene scene = new Scene(loader.load());
-                                                                                                                                                                scene.getStylesheets().add(getClass().getResource("../Styles/RegularStyles.css").toExternalForm());
-                                                                                                                                                                homeController controller = loader.getController();
-                                                                                                                                                                Stage stage = (Stage)b_signup.getScene().getWindow();
-                                                                                                                                                                stage.setScene(scene);
-                                                                                                                                                                stage.show();*/
-                        editor.switchScene((Stage) b_close.getScene().getWindow(),"../homeScene.fxml", "../Styles/RegularStyles.css");
+                        tfconfirm.clear();
+                        tfmdp.clear();
+                        tfuser.clear();
+
 
 
                         break;
@@ -110,9 +78,9 @@ public class signupController implements Initializable {
                         Stage alertStage2 = (Stage)alert2.getDialogPane().getScene().getWindow();
                         alertStage2.getIcons().add(new Image("com/projet/projet/Images/logo.png"));
                         alert2.showAndWait();
-                        mdp.clear();
-                        conf_mdp.clear();
-                        username.clear();
+                        tfmdp.clear();
+                        tfconfirm.clear();
+                        tfuser.clear();
                         break;
                     case -2:
                         Alert alert3 = new Alert(Alert.AlertType.ERROR);
@@ -122,9 +90,9 @@ public class signupController implements Initializable {
                         Stage alertStage3 = (Stage)alert3.getDialogPane().getScene().getWindow();
                         alertStage3.getIcons().add(new Image("com/projet/projet/Images/logo.png"));
                         alert3.showAndWait();
-                        mdp.clear();
-                        conf_mdp.clear();
-                        username.clear();
+                        tfconfirm.clear();
+                        tfuser.clear();
+                        tfmdp.clear();
                         break;
                     default:
                         break;
@@ -140,8 +108,8 @@ public class signupController implements Initializable {
                 Stage alertStage = (Stage)alert.getDialogPane().getScene().getWindow();
                 alertStage.getIcons().add(new Image("com/projet/projet/Images/logo.png"));
                 alert.showAndWait();
-                mdp.clear();
-                conf_mdp.clear();
+                tfmdp.clear();
+                tfconfirm.clear();
 
 
             }
@@ -150,13 +118,6 @@ public class signupController implements Initializable {
 
     }
 
-    public static String getLibName(){
-        return libName;
-    }
-
-    public static void revokeLibName(){
-        libName=null;
-    }
 
 
 }

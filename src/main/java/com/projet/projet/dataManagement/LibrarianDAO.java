@@ -1,7 +1,5 @@
 package com.projet.projet.dataManagement;
 
-import com.projet.projet.adherant.adherent;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -65,16 +63,17 @@ public class LibrarianDAO {
     }
 
 
-    public static int deleteLibr(String un){
-        String query = "delete from bibliothecaire where username = ?";
+    public static int deleteLibr(String un , String pw){
+        String query = "delete from bibliothecaire where username = ? and BINARY password = ?";
         try(
                 Connection conn = DataBaseConnection.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(query)
         ){
             stmt.setString(1,un);
+            stmt.setString(2,pw);
 
-            stmt.executeUpdate();
             return stmt.executeUpdate();
+
 
         }
         catch (SQLException e){

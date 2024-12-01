@@ -125,6 +125,7 @@ public class SceneMethods {
         scene.getStylesheets().add(getClass().getResource(css).toExternalForm());
         Stage stage = new Stage();
         stage.setScene(scene);
+        stage.getIcons().add(new Image("com/projet/projet/Images/logo.png"));
         stage.show();
 
     }

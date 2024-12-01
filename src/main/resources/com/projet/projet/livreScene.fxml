@@ -146,12 +146,12 @@
             </Pane>
          </children>
       </AnchorPane>
-      <Rectangle fx:id="hide" arcHeight="5.0" arcWidth="5.0" fill="#686868cc" height="634.0" layoutY="80.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="1250.0">
+      <Rectangle fx:id="hide" arcHeight="5.0" arcWidth="5.0" fill="#686868cc" height="634.0" layoutY="80.0" stroke="BLACK" strokeType="INSIDE" width="1250.0">
          <effect>
             <DropShadow />
          </effect>
       </Rectangle>
-      <AnchorPane fx:id="slider" prefHeight="200.0" prefWidth="280.0" style="-fx-background-color: #1786b4;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="80.0">
+      <AnchorPane fx:id="slider" prefHeight="200.0" prefWidth="280.0" style="-fx-background-color: #1786b4;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="80.0">
          <children>
             <Pane layoutX="27.0" layoutY="23.0" prefHeight="216.0" prefWidth="226.0">
                <children>

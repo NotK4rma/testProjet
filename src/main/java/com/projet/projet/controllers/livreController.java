@@ -507,6 +507,7 @@ public class livreController implements Initializable {
             System.out.println(observableLouv);
             tableouv.setItems(observableLouv);
         }
+        rechercheisbn.clear();
 
     }
 

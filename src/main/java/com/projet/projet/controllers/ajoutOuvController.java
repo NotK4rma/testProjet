@@ -165,7 +165,7 @@ public class ajoutOuvController implements Initializable {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Erreur 1");
                     alert.setHeaderText("Echec d'ajout de l'ouvrage!");
-                    alert.setContentText("Un y'a un erreur lors de verification de l'etat de l'ouvrage, impossible d'ajouter l'ouvrage, essayez de nouveau");
+                    alert.setContentText("Un y'a un erreur lors de verification de l'etat de l'ouvrage, impossible d'ajouter l'ouvrage, essayez de nouveau!");
                     Stage alertStage = (Stage)alert.getDialogPane().getScene().getWindow();
                     alertStage.getIcons().add(new Image("com/projet/projet/Images/logo.png"));
                     alert.showAndWait();
@@ -214,7 +214,7 @@ public class ajoutOuvController implements Initializable {
                         Alert alert = new Alert(Alert.AlertType.ERROR);
                         alert.setTitle("Erreur 2");
                         alert.setHeaderText("Echec d'ajout de l'ouvrage!");
-                        alert.setContentText("Un y'a un erreur inconnu, impossible d'ajouter l'ouvrage, essayez de nouveau");
+                        alert.setContentText("Un y'a un erreur inconnu, impossible d'ajouter l'ouvrage, essayez de nouveau!");
                         Stage alertStage = (Stage)alert.getDialogPane().getScene().getWindow();
                         alertStage.getIcons().add(new Image("com/projet/projet/Images/logo.png"));
                         alert.showAndWait();

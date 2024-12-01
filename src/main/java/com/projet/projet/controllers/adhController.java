@@ -1,11 +1,10 @@
 package com.projet.projet.controllers;
 
-import com.projet.projet.adherant.adherent;
+import com.projet.projet.personne.adherent;
 
 import com.projet.projet.dataManagement.AdherentDAO;
-import com.projet.projet.dataManagement.OuvrageDAO;
-import com.projet.projet.ouvrage.ouvrage;
 import com.projet.projet.utilsScene.SceneMethods;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -18,7 +17,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-import org.w3c.dom.css.Rect;
 
 import java.io.IOException;
 import java.net.URL;
@@ -128,15 +126,23 @@ public class adhController implements Initializable {
         l_nomlib.setWrapText(true);
         l_nomlib.setText("Bienvenue, "+libName+"!");
 
-        Tooltip tooltip = new Tooltip("Effacer le contenu du tableaux");
+        Tooltip tooltip = new Tooltip("Effacer le contenu du tableau");
         Tooltip.install(refreshTables, tooltip);
 
         refreshTables.setOnMouseClicked(e-> t_adh.getItems().clear());
 
         c_nbemp.setCellValueFactory(new PropertyValueFactory<>("nbemprunt"));
         c_cin.setCellValueFactory(new PropertyValueFactory<>("cin"));
-        c_nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
-        c_prenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
+
+
+        c_nom.setCellValueFactory(data->
+                new SimpleStringProperty(SceneMethods.capitalizeFirstLetter(data.getValue().getNom()))
+        );
+
+
+        c_prenom.setCellValueFactory(data->
+                new SimpleStringProperty(SceneMethods.capitalizeFirstLetter(data.getValue().getPrenom()))
+        );
 
         b_tous.setOnMouseClicked(e->afficherAdherent());
 
@@ -234,6 +240,7 @@ public class adhController implements Initializable {
             System.out.println(observableLadh);
             t_adh.setItems(observableLadh);
         }
+        recherchecin.clear();
 
     }
 
