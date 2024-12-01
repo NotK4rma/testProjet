@@ -61,7 +61,7 @@ public class signupController implements Initializable {
     }
 
     private void signUp() throws IOException {
-        String un = username.getText();
+        String un = username.getText().trim();
         String pw = mdp.getText();
         String c_pw = conf_mdp.getText();
         if(un.isBlank() || pw.isBlank() || c_pw.isBlank()){

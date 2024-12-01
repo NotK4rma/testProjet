@@ -2,14 +2,17 @@ package com.projet.projet.controllers;
 
 import com.projet.projet.adherant.adherent;
 
+import com.projet.projet.dataManagement.AdherentDAO;
+import com.projet.projet.dataManagement.OuvrageDAO;
+import com.projet.projet.ouvrage.ouvrage;
 import com.projet.projet.utilsScene.SceneMethods;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -19,6 +22,7 @@ import org.w3c.dom.css.Rect;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class adhController implements Initializable {
@@ -75,7 +79,7 @@ public class adhController implements Initializable {
     private TableColumn<adherent, String> c_cin;
 
     @FXML
-    private TableColumn<adherent, String> c_id;
+    private TableColumn<adherent, String> c_nbemp;
 
     @FXML
     private TableColumn<adherent, String> c_nom;
@@ -87,6 +91,11 @@ public class adhController implements Initializable {
 
     @FXML
     private Label l_nomlib;
+    @FXML
+    private ImageView refreshTables;
+
+    @FXML
+    private TextField recherchecin;
 
 
     private final SceneMethods editor = new SceneMethods();
@@ -96,12 +105,15 @@ public class adhController implements Initializable {
 
 
 
-   /* private void afficherAdhérent(){
+   private void afficherAdherent(){
+       List<adherent> Ladh = AdherentDAO.afficherAdherant();
+
+       ObservableList<adherent> observableLadh = FXCollections.observableArrayList(Ladh);
+       t_adh.setItems(observableLadh);
 
 
 
-
-    }*/
+    }
 
 
     @Override
@@ -113,14 +125,20 @@ public class adhController implements Initializable {
             libName =loginController.getLibName();
         }
 
-        l_nomlib.setText(libName);
+        l_nomlib.setWrapText(true);
+        l_nomlib.setText("Bienvenue, "+libName+"!");
 
-        c_id.setCellValueFactory(new PropertyValueFactory<>("nbemprunt"));
+        Tooltip tooltip = new Tooltip("Effacer le contenu du tableaux");
+        Tooltip.install(refreshTables, tooltip);
+
+        refreshTables.setOnMouseClicked(e-> t_adh.getItems().clear());
+
+        c_nbemp.setCellValueFactory(new PropertyValueFactory<>("nbemprunt"));
         c_cin.setCellValueFactory(new PropertyValueFactory<>("cin"));
         c_nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
         c_prenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
 
-
+        b_tous.setOnMouseClicked(e->afficherAdherent());
 
         menuOpen.setOnMouseClicked(e -> editor.translationOpen(slider, hide, menuOpen, menuClose));
         menuClose.setOnMouseClicked(e -> editor.translationClose(slider, hide, menuOpen, menuClose));
@@ -189,12 +207,36 @@ public class adhController implements Initializable {
         });
 
 
+        recherchecin.setOnAction(e->chercherAdherentByCIN());
 
 
 
 
 
     }
+
+    private void chercherAdherentByCIN(){
+        int cin = Integer.parseInt(recherchecin.getText());
+        t_adh.getItems().clear();
+        List<adherent> Ladh = AdherentDAO.rechercheAdhCin(cin);
+        if(Ladh.size()==0){
+            System.out.println("n'existe pas");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Adhérent Introuvable!");
+            alert.setContentText("Cet adhérent n'existe pas!\nEnregistrez le en clickant ajouter adhérent.");
+            Stage alertStage = (Stage)alert.getDialogPane().getScene().getWindow();
+            alertStage.getIcons().add(new Image("com/projet/projet/Images/logo.png"));
+            alert.showAndWait();
+        }
+        else {
+            ObservableList<adherent> observableLadh = FXCollections.observableArrayList(Ladh);
+            System.out.println(observableLadh);
+            t_adh.setItems(observableLadh);
+        }
+
+    }
+
 
 
 

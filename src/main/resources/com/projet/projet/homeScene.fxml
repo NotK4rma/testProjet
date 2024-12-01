@@ -99,12 +99,12 @@
                <children>
                   <VBox alignment="CENTER" prefHeight="216.0" prefWidth="234.0" spacing="10.0">
                      <children>
-                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" translateX="5.0">
+                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" translateX="10.0">
                            <image>
                               <Image url="@Images/3749904.png" />
                            </image>
                         </ImageView>
-                        <Label fx:id="l_nomlib" alignment="TOP_CENTER" prefHeight="17.0" prefWidth="206.0" text="PlaceHolder:Nom libr" textAlignment="CENTER" translateX="-15.0" />
+                        <Label fx:id="l_nomlib" alignment="TOP_CENTER" prefHeight="17.0" prefWidth="267.0" text="PlaceHolder:Nom libr" textAlignment="CENTER" />
                      </children>
                   </VBox>
                </children>

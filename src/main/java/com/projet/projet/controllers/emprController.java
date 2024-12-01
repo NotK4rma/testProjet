@@ -1,5 +1,6 @@
 package com.projet.projet.controllers;
 
+import com.projet.projet.pret.prets;
 import com.projet.projet.utilsScene.SceneMethods;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -84,6 +85,12 @@ public class emprController implements Initializable {
     @FXML
     private Label l_nomlib;
 
+    @FXML
+    private ImageView refreshTables;
+
+    @FXML
+    private TableView<prets> t_empr;
+
 
     private SceneMethods editor = new SceneMethods();
     private String[] options = {"ISBN du livre", "DATE d'emprunt", "CIN d'adhérent"};
@@ -99,11 +106,17 @@ public class emprController implements Initializable {
             libName =loginController.getLibName();
         }
 
-        l_nomlib.setText(libName);
+        l_nomlib.setWrapText(true);
+        l_nomlib.setText("Bienvenue, "+libName+"!");
 
 
         choiceRecherche.getItems().addAll(options);
         choiceRecherche.setOnAction(this::findSearchBar);
+
+        Tooltip tooltip = new Tooltip("Effacer le contenu du tableaux");
+        Tooltip.install(refreshTables, tooltip);
+
+        refreshTables.setOnMouseClicked(e-> t_empr.getItems().clear());
 
         menuOpen.setOnMouseClicked(e->editor.translationOpen(slider,hide,menuOpen,menuClose));
         menuClose.setOnMouseClicked(e->editor.translationClose(slider,hide,menuOpen,menuClose));

@@ -61,6 +61,9 @@ public class AjoutSuppAdherantController implements Initializable {
                         Stage alertStage = (Stage)alert.getDialogPane().getScene().getWindow();
                         alertStage.getIcons().add(new Image("com/projet/projet/Images/logo.png"));
                         alert.showAndWait();
+                        tfcin.clear();
+                        tfnom.clear();
+                        tfprenom.clear();
                         break;
                     case -1:
                         Alert alert2 = new Alert(Alert.AlertType.ERROR);

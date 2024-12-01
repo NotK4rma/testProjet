@@ -73,7 +73,7 @@ public class loginController implements Initializable {
 
 
     private void logIn() throws IOException {
-        String un = username.getText();
+        String un = username.getText().trim();
         String pw = mdp.getText();
         if(un.isBlank() || pw.isBlank() ){
             SceneMethods.alertErrorWindow();

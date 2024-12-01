@@ -27,7 +27,7 @@ public class ouvrage {
         return prix;
     }
 
-    public boolean getBestseller() {
+    public boolean isBestseller() {
         return bestseller;
     }
 
@@ -64,7 +64,10 @@ public class ouvrage {
     }
     
     public ouvrage(){}
-        public String toString(){
-            return "Titre : "+this.title+" isbn : "+this.isbn+" prix : "+this.prix+" Best seller ? "+this.bestseller+" nombre exemplaire : "+this.nbexemplaire ;  
-        }
+
+    @Override
+    public String toString(){
+        return "Titre : "+this.title+" isbn : "+this.isbn+" prix : "+this.prix+" Best seller ? "+this.bestseller+" nombre exemplaire : "+this.nbexemplaire ;
+    }
+
 }

@@ -85,7 +85,8 @@ public class libController implements Initializable {
             libName =loginController.getLibName();
         }
 
-        l_nomlib.setText(libName);
+        l_nomlib.setWrapText(true);
+        l_nomlib.setText("Bienvenue, "+libName+"!");
 
 
         menuOpen.setOnMouseClicked(e->editor.translationOpen(slider,hide,menuOpen,menuClose));

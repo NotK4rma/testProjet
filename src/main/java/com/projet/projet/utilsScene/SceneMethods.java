@@ -80,7 +80,7 @@ public class SceneMethods {
         fadeOut.setFromValue(0.8);
         slide.setDuration(Duration.millis(300));
         slide.setNode(p);
-        slide.setToX(-280);
+        slide.setToX(-282);
         fadeOut.setToValue(0);
 
         slide.play();
@@ -110,7 +110,7 @@ public class SceneMethods {
 
         fadeIn.play();
         slide.play();
-        p.setTranslateX(-280);
+        p.setTranslateX(-282);
         slide.setOnFinished(e->{
             open.setVisible(false);
             close.setVisible(true);

@@ -46,7 +46,11 @@ public class AdherentDAO {
         PreparedStatement stmt = conn.prepareStatement(query);
         ResultSet rs = stmt.executeQuery()){
            while (rs.next()){
-               adherent adh = new adherent(rs.getInt("cin"), rs.getString("nom"), rs.getString("prenom"));
+               adherent adh = new adherent(rs.getInt("cin"),
+                       rs.getString("nom"),
+                       rs.getString("prenom"),
+                       rs.getInt("nbEmprunt")
+               );
                Ladh.add(adh);
            }
 

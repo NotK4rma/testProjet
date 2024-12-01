@@ -90,11 +90,13 @@ public class OuvrageDAO {
                         rs.getInt("nbExemplaire")
                         );
                 Louv.add(ouv);
+                System.out.println("ajout +1");
             }
 
 
         }catch (SQLException e){
             e.printStackTrace();
+            System.out.println("oops");
         }
         return Louv;
 

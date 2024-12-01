@@ -91,8 +91,8 @@ public class homeController implements Initializable {
         }else{
             libName =loginController.getLibName();
         }
-
-        l_nomlib.setText(libName);
+        l_nomlib.setWrapText(true);
+        l_nomlib.setText("Bienvenue, "+libName+"!");
 
         
 
@@ -135,12 +135,12 @@ public class homeController implements Initializable {
 
 
             slide.setToX(0);
-            slide2.setToX(280);
+            slide2.setToX(282);
 
             slide.play();
             slide2.play();
 
-            slider.setTranslateX(-280);
+            slider.setTranslateX(-282);
             bg_slide.setTranslateX(0);
             slide.setOnFinished(e->{
                 menuOpen.setVisible(false);
@@ -165,14 +165,14 @@ public class homeController implements Initializable {
             slide2.setNode(bg_slide);
 
 
-            slide.setToX(-280);
+            slide.setToX(-282);
             slide2.setToX(0);
 
             slide.play();
             slide2.play();
 
             slider.setTranslateX(0);
-            bg_slide.setTranslateX(280);
+            bg_slide.setTranslateX(282);
             slide.setOnFinished(e->{
                 menuOpen.setVisible(true);
                 menuClose.setVisible(false);

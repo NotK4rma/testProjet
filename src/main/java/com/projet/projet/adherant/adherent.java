@@ -21,6 +21,13 @@ public class adherent {
         this.prenom=prenom;        
     }
 
+    public adherent(int cin ,String nom, String prenom, int nbemprunt){
+        this.cin=cin;
+        this.nom=nom;
+        this.prenom=prenom;
+        this.nbemprunt=nbemprunt;
+    }
+
 
     public int getCin() {
         return cin;

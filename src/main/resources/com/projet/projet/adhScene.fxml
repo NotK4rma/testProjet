@@ -25,7 +25,7 @@
                 <TableColumn fx:id="c_nom" prefWidth="75.0" text="Nom Adhérent" />
                 <TableColumn fx:id="c_prenom" prefWidth="75.0" text="Préom Adhérent" />
                   <TableColumn fx:id="c_cin" prefWidth="75.0" text="CIN Adhérent" />
-                  <TableColumn fx:id="c_id" prefWidth="75.0" text="Nombre d'emprunts" />
+                  <TableColumn fx:id="c_nbemp" prefWidth="75.0" text="Nombre d'emprunts" />
               </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -80,7 +80,7 @@
             </HBox>
             <Pane layoutX="44.0" layoutY="23.0" prefHeight="35.0" prefWidth="347.0">
                <children>
-                  <TextField prefHeight="35.0" prefWidth="347.0" promptText="Rechercher adhérent par CIN" />
+                  <TextField fx:id="recherchecin" prefHeight="35.0" prefWidth="347.0" promptText="Rechercher adhérent par CIN" />
                   <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="305.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@Images/search.png" />
@@ -203,6 +203,14 @@
                      </cursor>
                   </Button>
                   <Label fx:id="titreScene" alignment="CENTER" layoutX="412.0" layoutY="8.0" prefHeight="30.0" prefWidth="427.0" text="Adhérent" />
+                  <ImageView fx:id="refreshTables" fitHeight="20.0" fitWidth="20.0" layoutX="1106.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true" translateY="-1.0">
+                     <image>
+                        <Image url="@Images/refresh.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
                </children>
             </Pane>
             <HBox prefHeight="20.0" prefWidth="1250.0" spacing="1100.0">

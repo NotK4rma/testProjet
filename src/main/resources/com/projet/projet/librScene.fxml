@@ -200,6 +200,14 @@
                      </cursor>
                   </Button>
                   <Label fx:id="titreScene" alignment="CENTER" layoutX="412.0" layoutY="8.0" prefHeight="30.0" prefWidth="427.0" text="Bibliothécaire" />
+                  <ImageView fx:id="refreshTables" fitHeight="20.0" fitWidth="20.0" layoutX="1107.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" translateX="-1.0">
+                     <image>
+                        <Image url="@Images/refresh.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
                </children>
             </Pane>
             <HBox prefHeight="20.0" prefWidth="1250.0" spacing="1100.0">
