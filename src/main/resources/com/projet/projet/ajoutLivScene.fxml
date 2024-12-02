@@ -186,7 +186,12 @@
                   </HBox>
                </children>
             </Pane>
-            <Button fx:id="b_ajout" mnemonicParsing="false" prefHeight="40.0" prefWidth="147.0" text="Ajouter ouvrage" translateY="-30.0" />
+            <HBox fx:id="h_buttons" alignment="CENTER" spacing="30.0" translateY="-30.0">
+               <children>
+                  <Button fx:id="b_ajout" mnemonicParsing="false" prefHeight="40.0" prefWidth="147.0" text="Ajouter ouvrage" />
+                  <Button fx:id="b_modif" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="147.0" text="Modifier ouvrage" />
+               </children>
+            </HBox>
          </children>
          <padding>
             <Insets top="10.0" />

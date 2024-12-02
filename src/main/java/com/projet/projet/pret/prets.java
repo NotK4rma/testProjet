@@ -4,6 +4,8 @@
  */
 package com.projet.projet.pret;
 
+import com.projet.projet.dataManagement.EmpruntDAO;
+
 import java.time.LocalDate;
 
 public class prets {
@@ -13,6 +15,12 @@ public class prets {
     private LocalDate dateEmp;
     private LocalDate dateRetour;
     private static int id=0;
+    private static  int maxNbEmprunt = 5;
+
+
+    public static int getMaxNbEmprunt(){
+        return maxNbEmprunt;
+    }
 
 
 
@@ -79,20 +87,22 @@ public class prets {
 
 
     public prets(int cin, String isbn,LocalDate dateEmp, LocalDate dateRetour){
-        this.numPre=id++;
         this.cinAdh=cin;
         this.ISBNouv=isbn;
         this.dateEmp=dateEmp;
         this.dateRetour=dateRetour;
+        this.numPre= EmpruntDAO.getIdPret(isbn,cin,dateEmp);
+
         
     }
 
     public prets(int cin, String isbn,LocalDate dateEmp){
-        this.numPre=id++;
         this.cinAdh=cin;
         this.ISBNouv=isbn;
         this.dateEmp=dateEmp;
         this.dateRetour=null;
+        this.numPre= EmpruntDAO.getIdPret(isbn,cin,dateEmp);
+
 
     }
 

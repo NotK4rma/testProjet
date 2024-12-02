@@ -131,6 +131,22 @@ public class AdherentDAO {
 
     }
 
+    public static void decrementNombreEmpruntAdh(int cin){
+        String query= "update adherent set nbEmprunt = nbEmprunt -1 where cin = ?";
+        try(
+                Connection conn = DataBaseConnection.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(query)
+        ){
+            stmt.setInt(1,cin);
+            stmt.executeUpdate();
+
+        }catch(SQLException e){
+            e.printStackTrace();
+
+        }
+
+    }
+
 
     public static int getNombreEmpruntAdh(int cin){
         String query= "select * from adherent  where cin = ?";
@@ -155,8 +171,8 @@ public class AdherentDAO {
     }
 
 
-    public int existeAdherent(int cin) {
-        String query = "SELECT COUNT(*) as count FROM aherent WHERE cin = ? ";
+    public static int existeAdherent(int cin) {
+        String query = "SELECT COUNT(*) as count FROM adherent WHERE cin = ? ";
         try (Connection conn = DataBaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setInt(1, cin);
@@ -169,6 +185,28 @@ public class AdherentDAO {
             e.printStackTrace();
         }
         return -1;
+    }
+
+
+    public static int UpdateAdherant(adherent adh){
+        String query = "update adherent set nom =? , prenom = ? where cin = ?";
+        try (
+                Connection conn = DataBaseConnection.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(query)
+        ){
+            stmt.setString(1,adh.getNom());
+            stmt.setString(2,adh.getPrenom());
+            stmt.setInt(3,adh.getCin());
+
+            return stmt.executeUpdate();
+
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+            return -1;
+
+        }
+
     }
 
 

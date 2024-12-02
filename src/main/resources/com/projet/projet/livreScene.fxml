@@ -21,7 +21,7 @@
    <children>
       <AnchorPane fx:id="background" layoutY="80.0" prefHeight="634.0" prefWidth="1250.0">
          <children>
-            <TableView fx:id="tableouv" maxWidth="1250" minWidth="1250" prefHeight="554.0" prefWidth="1250.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <TableView fx:id="tableouv" maxWidth="1250" minWidth="1250" prefHeight="554.0" prefWidth="1250.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <columns>
                   <TableColumn fx:id="c_titre" minWidth="-Infinity" prefWidth="200.0" text="Titre" />
                   <TableColumn fx:id="c_isbn" minWidth="-Infinity" prefWidth="200.0" text="ISBN" />
@@ -33,7 +33,7 @@
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
             </TableView>
-            <TableView fx:id="tlivre" maxWidth="1250" minWidth="1250" prefHeight="554.0" prefWidth="1250.0" tableMenuButtonVisible="true" visible="false">
+            <TableView fx:id="tlivre" maxWidth="1250" minWidth="1250" prefHeight="554.0" prefWidth="1250.0" visible="false">
                <columns>
                   <TableColumn fx:id="c_titreLivre" minWidth="-Infinity" prefWidth="173.0" text="Titre" />
                   <TableColumn fx:id="c_isbnLivre" minWidth="-Infinity" prefWidth="169.0" text="ISBN" />
@@ -47,7 +47,7 @@
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
             </TableView>
-            <TableView fx:id="tmagazine" maxWidth="1250" minWidth="1250" prefHeight="554.0" prefWidth="1250.0" tableMenuButtonVisible="true" visible="false">
+            <TableView fx:id="tmagazine" maxWidth="1250" minWidth="1250" prefHeight="554.0" prefWidth="1250.0" visible="false">
                <columns>
                   <TableColumn fx:id="c_titremaga" minWidth="-Infinity" prefWidth="200.0" text="Titre" />
                   <TableColumn fx:id="c_isbnmaga" minWidth="-Infinity" prefWidth="200.0" text="ISBN" />
@@ -60,7 +60,7 @@
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
             </TableView>
-            <TableView fx:id="tbandedess" maxWidth="1250" minWidth="1250" prefHeight="554.0" prefWidth="1250.0" tableMenuButtonVisible="true" visible="false">
+            <TableView fx:id="tbandedess" maxWidth="1250" minWidth="1250" prefHeight="554.0" prefWidth="1250.0" visible="false">
                <columns>
                   <TableColumn fx:id="c_titrebd" minWidth="-Infinity" prefWidth="200.0" text="Titre" />
                   <TableColumn fx:id="c_isbnbd" minWidth="-Infinity" prefWidth="200.0" text="ISBN" />
@@ -73,7 +73,7 @@
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
             </TableView>
-            <TableView fx:id="tdict" maxWidth="1250" minWidth="1250" prefHeight="554.0" prefWidth="1250.0" tableMenuButtonVisible="true" visible="false">
+            <TableView fx:id="tdict" maxWidth="1250" minWidth="1250" prefHeight="554.0" prefWidth="1250.0" visible="false">
                <columns>
                   <TableColumn fx:id="c_titredict" minWidth="-Infinity" prefWidth="200.0" text="Titre" />
                   <TableColumn fx:id="c_isbndict" minWidth="-Infinity" prefWidth="173.0" text="ISBN" />

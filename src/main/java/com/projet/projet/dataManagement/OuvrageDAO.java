@@ -298,6 +298,22 @@ public class OuvrageDAO {
 
     }
 
+    public static void decrementNombreExemplaire(String isbn){
+        String query= "update ouvrage set nbExemplaire = nbExemplaire -1 where isbn = ?";
+        try(
+                Connection conn = DataBaseConnection.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(query)
+        ){
+            stmt.setString(1,isbn);
+            stmt.executeUpdate();
+
+        }catch(SQLException e){
+            e.printStackTrace();
+
+        }
+
+    }
+
 
     public static int existeOuvrage(String isbn) {
         String query = "SELECT COUNT(*) as count FROM ouvrage WHERE isbn = ? ";
@@ -313,6 +329,72 @@ public class OuvrageDAO {
             e.printStackTrace();
         }
         return -1;
+    }
+
+    public static int updateOuvrage(String titre, String isbn, double prix, boolean seller, int nbexmplr, String auteur, String genre, String illust, LocalDate pub, String lang, int mot){
+        String query = "update ouvrage set titre = ?, prix = ? , bestSeller = ?, nbExemplaire = ?, auteur = ?, genre = ?,  illustrateur = ?,  datePublication = ?,  langue = ?, nbMot = ? where isbn=?";
+        try (
+                Connection conn = DataBaseConnection.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(query)
+        ){
+            stmt.setString(1,titre);
+            stmt.setDouble(2,prix);
+            stmt.setBoolean(3,seller);
+            stmt.setInt(4,nbexmplr);
+            if(!(auteur.isBlank())){
+                stmt.setString(5,auteur);
+                stmt.setString(6,genre);
+                stmt.setNull(7, Types.VARCHAR);
+                stmt.setNull(8, Types.DATE);
+                stmt.setNull(9, Types.VARCHAR);
+                stmt.setNull(10, Types.INTEGER);
+                System.out.println("livre");
+            }
+            else if(!(illust.isBlank())){
+                stmt.setNull(5, Types.VARCHAR);
+                stmt.setNull(6, Types.VARCHAR);
+                stmt.setString(7,illust);
+                stmt.setNull(8, Types.DATE);
+                stmt.setNull(9, Types.VARCHAR);
+                stmt.setNull(10, Types.INTEGER);
+                System.out.println("bd");
+
+            } else if (pub!=null) {
+                stmt.setNull(5, Types.VARCHAR);
+                stmt.setNull(6, Types.VARCHAR);
+                stmt.setNull(7, Types.VARCHAR);
+                stmt.setDate(8,java.sql.Date.valueOf(pub));
+                stmt.setNull(9, Types.VARCHAR);
+                stmt.setNull(10, Types.INTEGER);
+                System.out.println("magazine");
+
+            }
+            else{
+                stmt.setNull(5, Types.VARCHAR);
+                stmt.setNull(6, Types.VARCHAR);
+                stmt.setNull(7, Types.VARCHAR);
+                stmt.setNull(8, Types.DATE);
+                stmt.setString(9,lang);
+                stmt.setInt(10,mot);
+                System.out.println("dictionnarie");
+
+            }
+
+            stmt.setString(11,isbn);
+
+
+
+            return stmt.executeUpdate();
+
+
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+            return -1;
+        }
+
+
+
     }
 
 

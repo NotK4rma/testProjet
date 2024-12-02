@@ -66,6 +66,11 @@ public class ajoutOuvController implements Initializable {
     private TextField tftitre;
     @FXML
     private Button b_ajout;
+    @FXML
+    private Button b_modif;
+
+    @FXML
+    private HBox h_buttons;
 
 
 
@@ -82,9 +87,10 @@ public class ajoutOuvController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         choix_type.getItems().addAll(options);
-        choix_type.setOnAction(e->showHiddenFields(e,b_ajout));
+        choix_type.setOnAction(e->showHiddenFields(e,h_buttons));
 
         b_ajout.setOnMouseClicked(e->ajouterOuvrage());
+        b_modif.setOnMouseClicked(e->modifierOuvrage());
 
 
 
@@ -209,7 +215,8 @@ public class ajoutOuvController implements Initializable {
                                 break;
                         }
                         choix_type.setValue(null);
-                        animatePageUp(b_ajout);
+                        animatePageUp(h_buttons);
+                        animatePageUp(h_buttons);
                     } else {
                         Alert alert = new Alert(Alert.AlertType.ERROR);
                         alert.setTitle("Erreur 2");
@@ -231,6 +238,141 @@ public class ajoutOuvController implements Initializable {
 
     }
 
+    private void modifierOuvrage(){
+        if(tftitre.getText().isBlank() || tfisbn.getText().isBlank() || tfprix.getText().isBlank() ||tfseller.getText().isBlank() ||tfnbexemp.getText().isBlank() || choix_type.getValue()==null || !SceneMethods.isDouble(tfprix.getText()) || !SceneMethods.isBoolean(tfseller.getText()) || !SceneMethods.isInteger(tfnbexemp.getText()) || !SceneMethods.isInteger(tfisbn.getText())){
+            System.out.println("field not filled");
+            System.out.println(tftitre.getText()+" "+tfisbn.getText()+" "+tfprix.getText()+" "+tfseller.getText()+" "+tfnbexemp.getText()+" "+ choix_type.getValue());
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Vérifier les champs de texte!");
+            alert.setContentText("Prière de remplir tous les champs disponibles.");
+            Stage alertStage = (Stage)alert.getDialogPane().getScene().getWindow();
+            alertStage.getIcons().add(new Image("com/projet/projet/Images/logo.png"));
+            alert.showAndWait();
+
+
+        }
+        else {
+            String type = choix_type.getValue();
+            boolean empty = true ;
+            boolean valid = true;
+            String auteur="";
+            String genre="";
+            LocalDate date_p=null;
+            String illust="";
+            String nbmot="";
+            String lang="";
+            switch (type){
+                case "Livre":
+                    auteur = tfauteur.getText();
+                    genre = tfgenre.getText();
+                    empty = (auteur.isBlank() || genre.isBlank());
+                    break;
+                case "Magazine":
+                    date_p = datepub.getValue();
+                    empty = (date_p==null);
+                    break;
+                case "Bande déssinée":
+                    illust = tfillust.getText();
+                    empty = (illust.isBlank());
+                    break;
+                case "Dictionnaire":
+                    nbmot = tfnbmot.getText();
+                    lang = tflangue.getText();
+                    empty = (nbmot.isBlank() || lang.isBlank());
+                    valid = (SceneMethods.isInteger(nbmot));
+                    break;
+                default:
+                    break;
+
+            }
+
+            if(empty || !valid){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Erreur");
+                alert.setHeaderText("Vérifier les champs de texte spécifiques au type de l'ouvrage!");
+                alert.setContentText("Prière de remplir tous les champs disponibles pour le type de l'ouvrage.");
+                Stage alertStage = (Stage)alert.getDialogPane().getScene().getWindow();
+                alertStage.getIcons().add(new Image("com/projet/projet/Images/logo.png"));
+                alert.showAndWait();
+
+
+            }
+            else{
+                String titre=tftitre.getText();
+                String isbn = tfisbn.getText();
+                boolean bSeller = Boolean.parseBoolean(tfseller.getText());
+                double prix = Double.parseDouble(tfprix.getText());
+                int nbexp = Integer.parseInt(tfnbexemp.getText());
+                int nbmot_int = (nbmot.isEmpty())?0 : Integer.parseInt(nbmot);
+                if(OuvrageDAO.existeOuvrage(isbn)==0){
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Erreur ");
+                    alert.setHeaderText("Echec de modification de l'ouvrage!");
+                    alert.setContentText("Cet ouvrage n'existe pas, essayez de nouveau!");
+                    Stage alertStage = (Stage)alert.getDialogPane().getScene().getWindow();
+                    alertStage.getIcons().add(new Image("com/projet/projet/Images/logo.png"));
+                    alert.showAndWait();
+                }
+                else {
+                    int res = OuvrageDAO.updateOuvrage(titre, isbn, prix, bSeller, nbexp, auteur, genre, illust, date_p, lang, nbmot_int);
+                    if (res == 1) {
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Succès");
+                        alert.setHeaderText("Modification avec succès!");
+                        alert.setContentText("L'ouvrage a été modifié avec succès");
+                        Stage alertStage = (Stage)alert.getDialogPane().getScene().getWindow();
+                        alertStage.getIcons().add(new Image("com/projet/projet/Images/logo.png"));
+                        alert.showAndWait();
+                        numberAnimation--;
+                        tftitre.clear();
+                        tfisbn.clear();
+                        tfprix.clear();
+                        tfnbexemp.clear();
+                        tfseller.clear();
+
+                        switch(choix_type.getValue()){
+                            case "Livre":
+                                tfgenre.clear();
+                                tfauteur.clear();
+                                hbox_livre.setVisible(false);
+                                break;
+                            case "Magazine":
+                                hbox_magazaine.setVisible(false);
+                                break;
+                            case "Bande déssinée":
+                                tfillust.clear();
+                                hbox_illustarteur.setVisible(false);
+                                break;
+                            case "Dictionnaire":
+                                tflangue.clear();
+                                tfnbmot.clear();
+                                hbox_dict.setVisible(false);
+                                break;
+                            default:
+                                break;
+                        }
+                        choix_type.setValue(null);
+                        animatePageUp(h_buttons);
+                        animatePageUp(h_buttons);
+                    } else {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Erreur ");
+                        alert.setHeaderText("Echec de modification de l'ouvrage!");
+                        alert.setContentText("Un y'a un erreur inconnu, impossible d'ajouter l'ouvrage, essayez de nouveau!");
+                        Stage alertStage = (Stage)alert.getDialogPane().getScene().getWindow();
+                        alertStage.getIcons().add(new Image("com/projet/projet/Images/logo.png"));
+                        alert.showAndWait();
+                    }
+                }
+
+
+            }
+
+        }
+
+
+    }
 
 
 
@@ -238,7 +380,8 @@ public class ajoutOuvController implements Initializable {
 
 
 
-    private void animatePage(Button b){
+
+    private void animatePage(HBox b){
         TranslateTransition slide = new TranslateTransition();
         slide.setDuration(Duration.millis(300));
         slide.setNode(b);
@@ -248,7 +391,7 @@ public class ajoutOuvController implements Initializable {
 
     }
 
-    private void animatePageUp(Button b){
+    private void animatePageUp(HBox b){
         TranslateTransition slide = new TranslateTransition();
         slide.setDuration(Duration.millis(300));
         slide.setNode(b);
@@ -258,7 +401,7 @@ public class ajoutOuvController implements Initializable {
 
     }
 
-    private void showHiddenFields(ActionEvent e,Button b){
+    private void showHiddenFields(ActionEvent e,HBox b){
         if (choix_type.getValue()!=null) {
             if (numberAnimation==0) {
                 animatePage(b);

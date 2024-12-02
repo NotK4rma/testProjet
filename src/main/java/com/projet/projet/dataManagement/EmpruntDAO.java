@@ -10,7 +10,7 @@ import java.util.List;
 
 public class EmpruntDAO {
 
-    public void saveEmprunt(prets emp){
+    public static int saveEmprunt(prets emp){
         String query = "insert into emprunt (idAdherant,idOuvrage,dateEmprunt,dateRetour) values(?,?,?,?)";
         try(
                 Connection conn = DataBaseConnection.getConnection();
@@ -19,22 +19,31 @@ public class EmpruntDAO {
                 stmt.setInt(1,emp.getCinAdh());
                 stmt.setString(2,emp.getISBNouv());
                 stmt.setDate(3,java.sql.Date.valueOf(emp.getDateEmp()));
-                stmt.setDate(4,java.sql.Date.valueOf(emp.getDateRetour()));
+            if (emp.getDateRetour()!=null) {
+                stmt.setDate(4, Date.valueOf(emp.getDateRetour()));
+            }else{
+                stmt.setNull(4,Types.DATE);
+            }
 
-                stmt.executeUpdate();
+            return stmt.executeUpdate();
 
 
         }catch (SQLException e){
-            e.printStackTrace();
+            if(e.getErrorCode() == 1062){
+                System.out.println("adh existe deja");
+                return -1;
+            }
+            else{
+                e.printStackTrace();
+                return -2;
+            }
         }
-
-
 
 
     }
 
 
-    public List<prets> afficherEmprunts(boolean courr){
+    public static List<prets> afficherEmprunts(boolean courr){
         String query = "select * from emprunt";
         List<prets> Lemp = new ArrayList<>();
         try(Connection conn = DataBaseConnection.getConnection();
@@ -91,7 +100,7 @@ public class EmpruntDAO {
     }
 
 
-    public List<prets> afficherEmpruntsByISBN(boolean courr, String isbn){
+    public static List<prets> afficherEmpruntsByISBN(boolean courr, String isbn){
         String query = "select * from emprunt where idOuvrage = ?";
         List<prets> Lemp = new ArrayList<>();
         try(Connection conn = DataBaseConnection.getConnection();
@@ -152,7 +161,7 @@ public class EmpruntDAO {
 
 
 
-    public List<prets> afficherEmpruntsByCIN(boolean courr, int cin){
+    public static List<prets> afficherEmpruntsByCIN(boolean courr, int cin){
         String query = "select * from emprunt where idAdherant = ?";
         List<prets> Lemp = new ArrayList<>();
         try(Connection conn = DataBaseConnection.getConnection();
@@ -209,7 +218,7 @@ public class EmpruntDAO {
 
 
 
-    public List<prets> afficherEmpruntsByDateEmprunt(boolean courr, LocalDate dateEmp){
+    public static List<prets> afficherEmpruntsByDateEmprunt(boolean courr, LocalDate dateEmp){
         String query = "select * from emprunt where dateEmprunt = ?";
         List<prets> Lemp = new ArrayList<>();
         try(Connection conn = DataBaseConnection.getConnection();
@@ -264,7 +273,7 @@ public class EmpruntDAO {
     }
 
 
-    public int updateRestituerEmprunt(int cin, String isbn, LocalDate dateRetour){
+   /* public static int updateRestituerEmprunt(int cin, String isbn, LocalDate dateRetour){
         LocalDate d_emp = getDateEmprunt(cin,isbn);
         if(d_emp == null){
             System.out.println("date d'emprunt est null");
@@ -299,30 +308,32 @@ public class EmpruntDAO {
         }
 
         return 0;
-    }
+    }*/
 
 
 
 
 
-    public int existeEmrpunt(int cin, String isbn){
-        String query = "select * from emprunt where idAdherant = ? and idOuvrage = ?";
-        int nbColumn = 0;
+    public static int existeEmrpunt(int cin, String isbn,LocalDate emp){
+        String query = "select count(*) as count from emprunt where idAdherant = ? and idOuvrage = ? and dateEmprunt= ?";
+
         try(Connection conn = DataBaseConnection.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(query)){
             stmt.setInt(1,cin);
             stmt.setString(2,isbn);
+            stmt.setDate(3,java.sql.Date.valueOf(emp));
             try(ResultSet rs =stmt.executeQuery()){
-                while(rs.next()){
-                    nbColumn++;
+                if(rs.next()){
+                    return rs.getInt("count");
                 }
+                return 0;
 
             }
 
         }catch (SQLException e){
             e.printStackTrace();
+            return -1;
         }
-        return nbColumn;
 
     }
 
@@ -372,6 +383,54 @@ public class EmpruntDAO {
 
     }
 
+
+    public static int updateEmprunt(prets emp){
+
+        String query = "update emprunt set dateRetour =? where idAdherant = ? and idOuvrage = ? and dateEmprunt = ?";
+        try(
+                Connection conn = DataBaseConnection.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(query))
+        {
+            stmt.setDate(1, Date.valueOf(emp.getDateRetour()));
+            stmt.setInt(2,emp.getCinAdh());
+            stmt.setString(3,emp.getISBNouv());
+            stmt.setDate(4,java.sql.Date.valueOf(emp.getDateEmp()));
+
+
+
+
+            return stmt.executeUpdate();
+
+
+        }catch (SQLException e){
+            e.printStackTrace();
+            return -1;
+        }
+
+    }
+
+    public static int getIdPret(String isbn, int cin , LocalDate d){
+        String query = "select * from emprunt where idAdherant = ? and idOuvrage = ? and dateEmprunt= ?";
+
+        try(Connection conn = DataBaseConnection.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(query)){
+            stmt.setInt(1,cin);
+            stmt.setString(2,isbn);
+            stmt.setDate(3,java.sql.Date.valueOf(d));
+            try(ResultSet rs =stmt.executeQuery()){
+                if(rs.next()){
+                    return rs.getInt("idEmprunt");
+                }
+                return 0;
+
+            }
+
+        }catch (SQLException e){
+            e.printStackTrace();
+            return -1;
+        }
+
+    }
 
 
 

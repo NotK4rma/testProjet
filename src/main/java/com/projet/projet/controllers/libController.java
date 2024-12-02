@@ -1,6 +1,8 @@
 package com.projet.projet.controllers;
 
+import com.projet.projet.dataManagement.AdherentDAO;
 import com.projet.projet.dataManagement.LibrarianDAO;
+import com.projet.projet.personne.adherent;
 import com.projet.projet.utilsScene.SceneMethods;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -85,6 +87,9 @@ public class libController implements Initializable {
 
     @FXML
     private ImageView refreshTables;
+
+    @FXML
+    private TextField rechercheLib;
 
 
     private SceneMethods editor = new SceneMethods();
@@ -197,6 +202,8 @@ public class libController implements Initializable {
         });
 
 
+        rechercheLib.setOnAction(e->chercherBibByUsername());
+
 
 
 
@@ -208,6 +215,29 @@ public class libController implements Initializable {
         List<String> Lbib = LibrarianDAO.afficherLibrs();
         ObservableList<String> observableLbib = FXCollections.observableArrayList(Lbib);
         t_libr.setItems(observableLbib);
+
+    }
+
+    private void chercherBibByUsername(){
+        String un = rechercheLib.getText();
+        t_libr.getItems().clear();
+        String lib = LibrarianDAO.chercherLibrs(un);
+        if(lib.isEmpty()){
+            System.out.println("n'existe pas");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Bibliothecaire Introuvable!");
+            alert.setContentText("Cet Bibliothecaire n'existe pas!\nEnregistrez le en clickant ajouter Bibliothecaire ou en utilisant la page Sign Up.");
+            Stage alertStage = (Stage)alert.getDialogPane().getScene().getWindow();
+            alertStage.getIcons().add(new Image("com/projet/projet/Images/logo.png"));
+            alert.showAndWait();
+        }
+        else {
+            ObservableList<String> observableLLib = FXCollections.observableArrayList(lib);
+            System.out.println(observableLLib);
+            t_libr.setItems(observableLLib);
+        }
+        rechercheLib.clear();
 
     }
 

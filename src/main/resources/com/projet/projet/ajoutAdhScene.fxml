@@ -52,7 +52,12 @@
                   <Insets left="118.0" right="118.0" />
                </padding>
             </VBox>
-            <Button fx:id="b_ajout" mnemonicParsing="false" prefHeight="40.0" prefWidth="147.0" text="Ajouter adhérent" />
+            <HBox alignment="CENTER" spacing="30.0">
+               <children>
+                  <Button fx:id="b_ajout" mnemonicParsing="false" prefHeight="40.0" prefWidth="147.0" text="Ajouter adhérent" />
+                  <Button fx:id="b_modif" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="147.0" text="Modifier adhérent" />
+               </children>
+            </HBox>
          </children>
          <padding>
             <Insets top="40.0" />

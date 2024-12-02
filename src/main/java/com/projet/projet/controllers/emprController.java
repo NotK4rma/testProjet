@@ -1,11 +1,16 @@
 package com.projet.projet.controllers;
 
+import com.projet.projet.dataManagement.EmpruntDAO;
 import com.projet.projet.pret.prets;
 import com.projet.projet.utilsScene.SceneMethods;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -14,6 +19,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class emprController implements Initializable {
@@ -91,10 +98,26 @@ public class emprController implements Initializable {
     @FXML
     private TableView<prets> t_empr;
 
+    @FXML
+    private TableColumn<prets, String> c_cin;
+
+    @FXML
+    private TableColumn<prets, LocalDate> c_emp;
+
+    @FXML
+    private TableColumn<prets, String> c_id;
+
+    @FXML
+    private TableColumn<prets, String> c_isbn;
+
+    @FXML
+    private TableColumn<prets, LocalDate> c_retour;
+
 
     private SceneMethods editor = new SceneMethods();
     private String[] options = {"ISBN du livre", "DATE d'emprunt", "CIN d'adhérent"};
-    private String css2= "../Styles/newWindowStyles.css";
+    private final String css2= "../Styles/newWindowStyles.css";
+    private final String css= "../Styles/RegularStyles.css";
     private static String libName;
 
     @Override
@@ -112,6 +135,21 @@ public class emprController implements Initializable {
 
         choiceRecherche.getItems().addAll(options);
         choiceRecherche.setOnAction(this::findSearchBar);
+
+
+        c_cin.setCellValueFactory(data->
+                new SimpleStringProperty(String.valueOf(data.getValue().getCinAdh()))
+        );
+
+        c_id.setCellValueFactory(data->
+                new SimpleStringProperty(String.valueOf(data.getValue().getNumPre()))
+        );
+
+        c_emp.setCellValueFactory(new PropertyValueFactory<>("dateEmp"));
+        c_retour.setCellValueFactory(new PropertyValueFactory<>("dateRetour"));
+
+        c_isbn.setCellValueFactory(new PropertyValueFactory<>("ISBNouv"));
+
 
         Tooltip tooltip = new Tooltip("Effacer le contenu du tableaux");
         Tooltip.install(refreshTables, tooltip);
@@ -138,7 +176,7 @@ public class emprController implements Initializable {
             }
 
         });
-        String css= "../Styles/RegularStyles.css";
+
         b_adh.setOnMouseClicked(e-> {
             try {
                 editor.switchScene((Stage)b_close.getScene().getWindow(),"../adhScene.fxml", css);
@@ -168,6 +206,27 @@ public class emprController implements Initializable {
         });
 
 
+        b_ajout.setOnMouseClicked(e-> {
+            try {
+                editor.switchMiniStage("../AjoutEmrpuntScene.fxml",css2);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+
+        b_remove.setOnMouseClicked(e-> {
+            try {
+                editor.switchMiniStage("../RestituerEmpruntScene.fxml",css2);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+
+        b_tous.setOnMouseClicked(e->afficherTousEmprunts());
+
+        tf_isbn.setOnAction(e->afficherEmpruntsISBN(tf_isbn.getText()));
+        tf_cin.setOnAction(e->afficherEmpruntsCIN(Integer.parseInt(tf_cin.getText())));
+        tf_date.setOnAction(e->afficherEmpruntsDATE(LocalDate.parse(tf_date.getText())));
 
 
 
@@ -198,6 +257,35 @@ public class emprController implements Initializable {
                 break;
 
         }
+
+    }
+
+    private void afficherTousEmprunts(){
+        List<prets> Lemp = EmpruntDAO.afficherEmprunts(emprcourrant.isSelected());
+        ObservableList<prets> observableLemp = FXCollections.observableArrayList(Lemp);
+        t_empr.setItems(observableLemp);
+
+    }
+
+    private void afficherEmpruntsISBN(String isbn){
+        List<prets> Lemp = EmpruntDAO.afficherEmpruntsByISBN(emprcourrant.isSelected(),isbn);
+        ObservableList<prets> observableLemp = FXCollections.observableArrayList(Lemp);
+        t_empr.setItems(observableLemp);
+
+    }
+
+    private void afficherEmpruntsCIN(int cin){
+        List<prets> Lemp = EmpruntDAO.afficherEmpruntsByCIN(emprcourrant.isSelected(),cin);
+        ObservableList<prets> observableLemp = FXCollections.observableArrayList(Lemp);
+        t_empr.setItems(observableLemp);
+
+    }
+
+
+    private void afficherEmpruntsDATE(LocalDate D){
+        List<prets> Lemp = EmpruntDAO.afficherEmpruntsByDateEmprunt(emprcourrant.isSelected(),D);
+        ObservableList<prets> observableLemp = FXCollections.observableArrayList(Lemp);
+        t_empr.setItems(observableLemp);
 
     }
 

@@ -253,7 +253,10 @@ public class livreController implements Initializable {
         c_auteur.setCellValueFactory(new PropertyValueFactory<>("auteur"));
 
 
-        c_titre.setCellValueFactory(new PropertyValueFactory<>("title"));
+       // c_titre.setCellValueFactory(new PropertyValueFactory<>("title"));
+        c_titre.setCellValueFactory(data->
+            new SimpleStringProperty(SceneMethods.capitalizeFirstLetter(data.getValue().getTitle()))
+        );
 
 
         c_isbn.setCellValueFactory(new PropertyValueFactory<>("isbn"));
@@ -265,7 +268,7 @@ public class livreController implements Initializable {
 
         c_best.setCellValueFactory(cellData ->
                 new SimpleStringProperty(cellData.getValue().isBestseller() ? "Oui" : "Non")
-        );;
+        );
 
 
         c_dispo.setCellValueFactory(cellData ->
@@ -344,16 +347,24 @@ public class livreController implements Initializable {
         );
 
 
-        c_titreLivre.setCellValueFactory(new PropertyValueFactory<>("title"));
+        c_titreLivre.setCellValueFactory(data->
+                new SimpleStringProperty(SceneMethods.capitalizeFirstLetter(data.getValue().getTitle()))
+        );
 
 
-        c_titrebd.setCellValueFactory(new PropertyValueFactory<>("title"));
+        c_titrebd.setCellValueFactory(data->
+                new SimpleStringProperty(SceneMethods.capitalizeFirstLetter(data.getValue().getTitle()))
+        );
 
 
-        c_titredict.setCellValueFactory(new PropertyValueFactory<>("title"));
+        c_titredict.setCellValueFactory(data->
+                new SimpleStringProperty(SceneMethods.capitalizeFirstLetter(data.getValue().getTitle()))
+        );
 
 
-        c_titremaga.setCellValueFactory(new PropertyValueFactory<>("title"));
+        c_titremaga.setCellValueFactory(data->
+                new SimpleStringProperty(SceneMethods.capitalizeFirstLetter(data.getValue().getTitle()))
+        );
 
 
 

@@ -107,4 +107,28 @@ public class LibrarianDAO {
     }
 
 
+    public static String chercherLibrs(String un){
+        String query = "select * from bibliothecaire where username = ?";
+        try(Connection conn = DataBaseConnection.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(query);) {
+
+            stmt.setString(1, un);
+            try (ResultSet rs = stmt.executeQuery()) {
+
+                if (rs.next()) {
+                    return rs.getString("username");
+                }
+            }
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+        return "";
+
+
+
+
+    }
+
+
 }

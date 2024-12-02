@@ -18,7 +18,7 @@ public class HelloApplication extends Application {
         stage.setResizable(false);
         scene.getStylesheets().add(getClass().getResource("Styles/signInUpStyles.css").toExternalForm());
         stage.initStyle(StageStyle.UNDECORATED);
-        //stage.getIcons().add(new Image("com/projet/projet/Images/logo.png"));
+        stage.getIcons().add(new Image("com/projet/projet/Images/logo.png"));
         stage.setScene(scene);
         stage.show();
     }
