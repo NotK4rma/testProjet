@@ -96,14 +96,14 @@
          <children>
             <Pane layoutX="27.0" layoutY="23.0" prefHeight="216.0" prefWidth="226.0">
                <children>
-                  <VBox alignment="CENTER" prefHeight="216.0" prefWidth="234.0" spacing="20.0">
+                  <VBox alignment="CENTER" prefHeight="216.0" prefWidth="234.0" spacing="10.0">
                      <children>
-                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" translateX="10.0">
                            <image>
                               <Image url="@Images/3749904.png" />
                            </image>
                         </ImageView>
-                        <Label fx:id="l_nomlib" text="PlaceHolder:Nom libr" />
+                        <Label fx:id="l_nomlib" alignment="TOP_CENTER" prefHeight="17.0" prefWidth="295.0" text="PlaceHolder:Nom libr" />
                      </children>
                   </VBox>
                </children>

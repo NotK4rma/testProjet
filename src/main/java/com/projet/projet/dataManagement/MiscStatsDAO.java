@@ -94,6 +94,27 @@ public class MiscStatsDAO {
     }
 
 
+    public static int getNbEmprunt(){
+        String query = "select count(*) as count from emprunt";
+        try(
+                Connection conn = DataBaseConnection.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(query);
+                ResultSet rs = stmt.executeQuery()
+        ){
+            if (rs.next()){
+                return rs.getInt("count");
+            }
+
+            return 0;
+
+        }catch(SQLException e){
+            e.printStackTrace();
+            return -1;
+        }
+
+    }
+
+
 
 
 

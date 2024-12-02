@@ -103,19 +103,23 @@ public class homeController implements Initializable {
 
         if(MiscStatsDAO.getNbAdherent()>=0){
             Text p1 = new Text("Actuellement, Il y'a ");
-            Text p2 = new Text(" adhérents abonnées à la bibliotheques avec X emprunt total.");
+            Text p2 = new Text(" adhérents abonnées à la bibliotheque avec ");
+            Text p3 = new Text(" emprunts total.");
+            Text boldStat2 = new Text(String.valueOf(MiscStatsDAO.getNbEmprunt()));
             p1.setFont(Font.font("Roboto", FontWeight.NORMAL,20));
             p2.setFont(Font.font("Roboto", FontWeight.NORMAL,20));
+            p3.setFont(Font.font("Roboto", FontWeight.NORMAL,20));
             Text boldStat = new Text(String.valueOf(MiscStatsDAO.getNbAdherent()));
             boldStat.setFont(Font.font("Roboto", FontWeight.BOLD,22));
-            t_adh.getChildren().addAll(p1, boldStat , p2);
+            boldStat2.setFont(Font.font("Roboto", FontWeight.BOLD,22));
+            t_adh.getChildren().addAll(p1, boldStat , p2, boldStat2, p3);
         }
 
 
         if(MiscStatsDAO.getNbOuvrageDistinct()>=0){
             Text p1 = new Text("Actuellement, Il y'a ");
-            Text p2 = new Text(" ouvrage disctinct dans la bibliotheques avec ");
-            Text p3 = new Text(" ouvrage totales.");
+            Text p2 = new Text(" ouvrages disctinct dans la bibliotheque avec ");
+            Text p3 = new Text(" ouvrages totales.");
             p1.setFont(Font.font("Roboto", FontWeight.NORMAL,20));
             p2.setFont(Font.font("Roboto", FontWeight.NORMAL,20));
             p3.setFont(Font.font("Roboto", FontWeight.NORMAL,20));
@@ -129,7 +133,7 @@ public class homeController implements Initializable {
 
         if(MiscStatsDAO.getNbBibliothecaire()>=0){
             Text p1 = new Text("Actuellement, Il y'a ");
-            Text p2 = new Text(" bibliothecaire travaillant dans la bibliotheques.");
+            Text p2 = new Text(" bibliothecaires travaillant à la bibliotheque.");
             p1.setFont(Font.font("Roboto", FontWeight.NORMAL,20));
             p2.setFont(Font.font("Roboto", FontWeight.NORMAL,20));
             Text boldStat = new Text(String.valueOf(MiscStatsDAO.getNbBibliothecaire()));
