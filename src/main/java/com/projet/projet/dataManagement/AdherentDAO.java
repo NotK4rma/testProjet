@@ -76,7 +76,8 @@ public class AdherentDAO {
                     while(rs.next()){
                         adherent adh = new adherent(rs.getInt("cin"),
                                 rs.getString("nom"),
-                                rs.getString("prenom")
+                                rs.getString("prenom"),
+                                rs.getInt("nbEmprunt")
                                 );
                         Ladh.add(adh);
                     }
