@@ -88,6 +88,9 @@ public class adhController implements Initializable {
     private TableView<adherent> t_adh;
 
     @FXML
+    private TableColumn<adherent,String> c_status;
+
+    @FXML
     private Label l_nomlib;
     @FXML
     private ImageView refreshTables;
@@ -141,6 +144,11 @@ public class adhController implements Initializable {
 
         c_prenom.setCellValueFactory(data->
                 new SimpleStringProperty(SceneMethods.capitalizeFirstLetter(data.getValue().getPrenom()))
+        );
+
+
+        c_status.setCellValueFactory(data->
+                new SimpleStringProperty(SceneMethods.capitalizeFirstLetter(data.getValue().getStatus()))
         );
 
         b_tous.setOnMouseClicked(e->afficherAdherent());

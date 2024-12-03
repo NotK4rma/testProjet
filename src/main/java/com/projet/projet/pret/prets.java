@@ -16,6 +16,7 @@ public class prets {
     private LocalDate dateRetour;
     private static int id=0;
     private static  int maxNbEmprunt = 5;
+    private static  int maxjouremprunt = 14;
 
 
     public static int getMaxNbEmprunt(){
@@ -23,15 +24,17 @@ public class prets {
     }
 
 
+    public static int getMaxjouremprunt() {
+        return maxjouremprunt;
+    }
 
     public int getNumPre() {
         return numPre;
     }
 
-
-
-
-
+    public static void setMaxjouremprunt(int maxjouremprunt) {
+        prets.maxjouremprunt = maxjouremprunt;
+    }
 
     public LocalDate getDateEmp() {
         return dateEmp;

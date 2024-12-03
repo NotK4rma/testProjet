@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
@@ -29,6 +30,11 @@ public class AjoutAdherantController implements Initializable {
     @FXML
     private Button b_modif;
 
+    @FXML
+    private ChoiceBox<String>  tfStatus;
+
+    private final String[] stat = {"Etudiant","Professeur"};
+
 
 
 
@@ -36,6 +42,9 @@ public class AjoutAdherantController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        tfStatus.getItems().addAll(stat);
+
 
         b_ajout.setOnMouseClicked(e->ajouterAdherent());
         b_modif.setOnMouseClicked(e->modifierAdherent());
@@ -48,11 +57,12 @@ public class AjoutAdherantController implements Initializable {
         String nom = tfnom.getText();
         String prenom = tfprenom.getText();
         String cin = tfcin.getText();
-        if(nom.isBlank() || prenom.isBlank() || cin.isBlank() || !SceneMethods.isInteger(cin)){
+        String status = tfStatus.getValue();
+        if(nom.isBlank() || prenom.isBlank() || cin.isBlank() || !SceneMethods.isInteger(cin) ||status==null){
             SceneMethods.alertErrorWindow();
         }
         else{
-            adherent adh = new adherent(Integer.parseInt(cin),nom,prenom);
+            adherent adh = new adherent(Integer.parseInt(cin),nom,prenom,status);
             int res = AdherentDAO.UpdateAdherant(adh);
             switch (res){
                 case 1:
@@ -66,6 +76,7 @@ public class AjoutAdherantController implements Initializable {
                     tfcin.clear();
                     tfnom.clear();
                     tfprenom.clear();
+                    tfStatus.setValue(null);
                     break;
                 case 0:
                     Alert alert2 = new Alert(Alert.AlertType.ERROR);
@@ -78,6 +89,8 @@ public class AjoutAdherantController implements Initializable {
                     tfcin.clear();
                     tfnom.clear();
                     tfprenom.clear();
+                    tfStatus.setValue(null);
+
                     break;
                 case -1:
                     Alert alert3 = new Alert(Alert.AlertType.ERROR);
@@ -90,6 +103,8 @@ public class AjoutAdherantController implements Initializable {
                     tfcin.clear();
                     tfnom.clear();
                     tfprenom.clear();
+                    tfStatus.setValue(null);
+
                     break;
                 default:
                     break;
@@ -107,11 +122,12 @@ public class AjoutAdherantController implements Initializable {
            String nom = tfnom.getText();
            String prenom = tfprenom.getText();
            String cin = tfcin.getText();
-           if(nom.isBlank() || prenom.isBlank() || cin.isBlank() || !SceneMethods.isInteger(cin)){
+        String status = tfStatus.getValue();
+        if(nom.isBlank() || prenom.isBlank() || cin.isBlank() || !SceneMethods.isInteger(cin) || status==null){
                SceneMethods.alertErrorWindow();
            }
            else{
-                adherent adh = new adherent(Integer.parseInt(cin),nom,prenom);
+                adherent adh = new adherent(Integer.parseInt(cin),nom,prenom,status);
                 int res = AdherentDAO.saveAdherant(adh);
                 switch (res){
                     case 0:
@@ -124,6 +140,7 @@ public class AjoutAdherantController implements Initializable {
                         alert.showAndWait();
                         tfcin.clear();
                         tfnom.clear();
+                        tfStatus.setValue(null);
                         tfprenom.clear();
                         break;
                     case -1:
@@ -137,6 +154,7 @@ public class AjoutAdherantController implements Initializable {
                         tfcin.clear();
                         tfnom.clear();
                         tfprenom.clear();
+                        tfStatus.setValue(null);
                         break;
                     case -2:
                         Alert alert3 = new Alert(Alert.AlertType.ERROR);
@@ -149,6 +167,7 @@ public class AjoutAdherantController implements Initializable {
                         tfcin.clear();
                         tfnom.clear();
                         tfprenom.clear();
+                        tfStatus.setValue(null);
                         break;
                     default:
                         break;

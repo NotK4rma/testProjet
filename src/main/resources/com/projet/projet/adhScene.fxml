@@ -26,6 +26,7 @@
                 <TableColumn fx:id="c_prenom" prefWidth="75.0" text="Préom Adhérent" />
                   <TableColumn fx:id="c_cin" prefWidth="75.0" text="CIN Adhérent" />
                   <TableColumn fx:id="c_nbemp" prefWidth="75.0" text="Nombre d'emprunts" />
+                  <TableColumn fx:id="c_status" prefWidth="75.0" text="Status" />
               </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

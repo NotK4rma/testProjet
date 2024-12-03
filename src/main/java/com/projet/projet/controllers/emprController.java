@@ -106,6 +106,8 @@ public class emprController implements Initializable {
 
     @FXML
     private TableColumn<prets, String> c_id;
+    @FXML
+    private TableColumn<prets, String> c_limitte;
 
     @FXML
     private TableColumn<prets, String> c_isbn;
@@ -141,6 +143,9 @@ public class emprController implements Initializable {
                 new SimpleStringProperty(String.valueOf(data.getValue().getCinAdh()))
         );
 
+
+
+
         c_id.setCellValueFactory(data->
                 new SimpleStringProperty(String.valueOf(data.getValue().getNumPre()))
         );
@@ -149,6 +154,11 @@ public class emprController implements Initializable {
         c_retour.setCellValueFactory(new PropertyValueFactory<>("dateRetour"));
 
         c_isbn.setCellValueFactory(new PropertyValueFactory<>("ISBNouv"));
+
+
+        c_limitte.setCellValueFactory(data->
+                new SimpleStringProperty(limitteDepasser(data.getValue())?"Limite dépasser" : "Pas encore")
+        );
 
 
         Tooltip tooltip = new Tooltip("Effacer le contenu du tableaux");
@@ -287,6 +297,17 @@ public class emprController implements Initializable {
         ObservableList<prets> observableLemp = FXCollections.observableArrayList(Lemp);
         t_empr.setItems(observableLemp);
 
+    }
+
+    private boolean limitteDepasser(prets p){
+        LocalDate lim = p.getDateEmp().plusDays(prets.getMaxjouremprunt());
+        if (p.getDateRetour()==null){
+            return LocalDate.now().isAfter(lim);
+        }
+        else {
+            return p.getDateRetour().isAfter(lim);
+
+        }
     }
 
 

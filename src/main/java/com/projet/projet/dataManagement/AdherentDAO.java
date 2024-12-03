@@ -11,7 +11,7 @@ import java.util.List;
 
 public class AdherentDAO {
     public static int saveAdherant(adherent adh){
-        String query = "insert into adherent(cin,nom,prenom) values(?,?,?)";
+        String query = "insert into adherent(cin,nom,prenom,status) values(?,?,?,?)";
         try (
             Connection conn = DataBaseConnection.getConnection();
             PreparedStatement stmt = conn.prepareStatement(query)
@@ -19,6 +19,7 @@ public class AdherentDAO {
             stmt.setInt(1,adh.getCin());
             stmt.setString(2,adh.getNom());
             stmt.setString(3,adh.getPrenom());
+            stmt.setString(4,adh.getStatus());
 
             stmt.executeUpdate();
             System.out.println("adherent enregistre");
@@ -49,7 +50,8 @@ public class AdherentDAO {
                adherent adh = new adherent(rs.getInt("cin"),
                        rs.getString("nom"),
                        rs.getString("prenom"),
-                       rs.getInt("nbEmprunt")
+                       rs.getInt("nbEmprunt"),
+                       rs.getString("status")
                );
                Ladh.add(adh);
            }
@@ -77,7 +79,8 @@ public class AdherentDAO {
                         adherent adh = new adherent(rs.getInt("cin"),
                                 rs.getString("nom"),
                                 rs.getString("prenom"),
-                                rs.getInt("nbEmprunt")
+                                rs.getInt("nbEmprunt"),
+                                rs.getString("status")
                                 );
                         Ladh.add(adh);
                     }
@@ -190,14 +193,15 @@ public class AdherentDAO {
 
 
     public static int UpdateAdherant(adherent adh){
-        String query = "update adherent set nom =? , prenom = ? where cin = ?";
+        String query = "update adherent set nom =? , prenom = ? , status = ? where cin = ?";
         try (
                 Connection conn = DataBaseConnection.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(query)
         ){
             stmt.setString(1,adh.getNom());
             stmt.setString(2,adh.getPrenom());
-            stmt.setInt(3,adh.getCin());
+            stmt.setString(3,adh.getStatus());
+            stmt.setInt(4,adh.getCin());
 
             return stmt.executeUpdate();
 

@@ -105,8 +105,10 @@ public class AjouterEmpruntController implements Initializable {
                                     tfcin.clear();
                                     break;
                                 case 1:
-                                    AdherentDAO.incrementNombreEmpruntAdh(Integer.parseInt(cin));
-                                    OuvrageDAO.decrementNombreExemplaire(isbn);
+                                    if (retour==null) {
+                                        AdherentDAO.incrementNombreEmpruntAdh(Integer.parseInt(cin));
+                                        OuvrageDAO.decrementNombreExemplaire(isbn);
+                                    }
                                     Alert alert3 = new Alert(Alert.AlertType.INFORMATION);
                                     alert3.setTitle("Succès");
                                     alert3.setHeaderText("Ajout réussie!");

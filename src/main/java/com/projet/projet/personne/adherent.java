@@ -13,21 +13,31 @@ public class adherent {
     private String nom;
     private String prenom;
     private int nbemprunt=0;
+    private String status;
 
     
-    public adherent(int cin,String nom,String prenom){
+    public adherent(int cin,String nom,String prenom, String status){
         this.cin=cin;
         this.nom=nom;
-        this.prenom=prenom;        
+        this.prenom=prenom;
+        this.status=status;
     }
 
-    public adherent(int cin ,String nom, String prenom, int nbemprunt){
+    public adherent(int cin ,String nom, String prenom, int nbemprunt,String status){
         this.cin=cin;
         this.nom=nom;
         this.prenom=prenom;
         this.nbemprunt=nbemprunt;
+        this.status=status;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     public int getCin() {
         return cin;
